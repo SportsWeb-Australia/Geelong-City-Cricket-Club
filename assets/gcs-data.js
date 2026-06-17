@@ -30,7 +30,13 @@ window.GCS_DATA = {
     mapUrl:   "https://tinyurl.com/28ptesue",
     facebook: "https://www.facebook.com/geelongcitycricketclub",
     instagram:"https://www.instagram.com/geelongcitycc/",
-    crest:    "assets/gcs-crest.svg",   // CONNECT: swap for official Sharks_logo webp
+    crest:    "assets/logos/sharks-shield.png",   // primary modern mark (shield)
+    logos: {
+      shield:      "assets/logos/sharks-shield.png", // modern Sharks shield — primary, reads on any bg
+      crestNavy:   "assets/logos/crest-navy.png",    // traditional crest (navy) — for light backgrounds
+      crestWhite:  "assets/logos/crest-white.png"    // traditional crest (white) — for dark backgrounds
+    },
+    motto:    "Facile Princeps",   // from the traditional crest
     real:true
   },
 
