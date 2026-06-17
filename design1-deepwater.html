@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<!-- Geelong City Sharks — Design 1 "Deep Water" -->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Geelong City Sharks — Home of the Sharks</title>
+<meta name="description" content="Geelong City Cricket Club — Home of the Sharks. GCA cricket since 1928.">
+<meta name="theme-color" content="#0a2540">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0a2540;--navy2:#0e3a5c;--navy3:#15446e;--aqua:#22c3e6;--aqua2:#0aa6c9;
+  --ink:#0a1722;--bg:#eef3f7;--card:#fff;--border:rgba(10,37,64,.10);--muted:#5d6f81;
+  --r:16px;--rsm:10px;--shadow:0 1px 3px rgba(10,37,64,.08),0 8px 28px rgba(10,37,64,.07);
+}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:'DM Sans',system-ui,sans-serif;background:var(--bg);color:var(--ink);font-size:15px;line-height:1.55;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}img,svg{display:block;max-width:100%}
+.wrap{max-width:1180px;margin:0 auto;padding:0 18px}
+.eyebrow{font:600 11px/1 'Space Grotesk',sans-serif;letter-spacing:2.4px;text-transform:uppercase;color:var(--aqua2);display:inline-flex;align-items:center;gap:8px}
+.eyebrow::before{content:"";width:22px;height:2px;background:var(--aqua);border-radius:2px}
+h2.s-hed{font-family:'Bebas Neue',sans-serif;font-size:clamp(30px,5.5vw,46px);line-height:.95;letter-spacing:.5px;color:var(--navy);margin:10px 0 6px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:var(--rsm);font:700 14px/1 'DM Sans',sans-serif;cursor:pointer;border:none;transition:transform .15s,background .15s,box-shadow .15s;white-space:nowrap}
+.btn:hover{transform:translateY(-2px)}
+.btn-aqua{background:var(--aqua);color:var(--navy);box-shadow:0 6px 18px rgba(34,195,230,.4)}
+.btn-aqua:hover{background:#3fd0ee}
+.btn-ghost{background:rgba(255,255,255,.08);color:#fff;border:1.5px solid rgba(255,255,255,.32)}
+.btn-ghost:hover{background:rgba(255,255,255,.16)}
+.btn-navy{background:var(--navy);color:#fff}.btn-navy:hover{background:var(--navy2)}
+.pill{display:inline-flex;align-items:center;gap:5px;font:700 10px/1 'Space Grotesk';letter-spacing:.6px;text-transform:uppercase;padding:4px 9px;border-radius:20px}
+.pill-aqua{background:rgba(34,195,230,.16);color:var(--aqua2)}
+.pill-sample{background:#fff3d6;color:#9a6a00}
+.pill-win{background:#d8f5e3;color:#15803d}.pill-loss{background:#fde2e2;color:#b91c1c}
+
+/* topbar */
+.topbar{background:#06192c;color:rgba(255,255,255,.6)}
+.topbar .wrap{display:flex;align-items:center;justify-content:space-between;height:38px;font-size:12px}
+.topbar a{color:rgba(255,255,255,.6)}.topbar a:hover{color:#fff}
+.tb-l{display:flex;gap:18px}.tb-l span{display:inline-flex;align-items:center;gap:6px}
+.tb-r{display:flex;align-items:center;gap:14px}
+.tb-soc{display:flex;gap:8px}.tb-soc a{font-size:15px}
+@media(max-width:720px){.tb-l span:nth-child(2){display:none}}
+
+/* nav */
+.nav{position:sticky;top:0;z-index:60;background:rgba(10,37,64,.96);backdrop-filter:blur(10px);box-shadow:0 2px 20px rgba(0,0,0,.25)}
+.nav .wrap{display:flex;align-items:center;height:66px;gap:14px}
+.brand{display:flex;align-items:center;gap:11px;margin-right:auto}
+.brand img{width:46px;height:46px}
+.brand b{font-family:'Bebas Neue';font-size:22px;letter-spacing:.8px;color:#fff;line-height:1}
+.brand small{display:block;font-size:10px;letter-spacing:1.5px;color:var(--aqua);text-transform:uppercase}
+.nav-links{display:flex;gap:3px}
+.nav-links a{padding:9px 12px;border-radius:8px;font-size:14px;font-weight:500;color:rgba(255,255,255,.72);transition:.15s}
+.nav-links a:hover,.nav-links a.active{background:rgba(34,195,230,.16);color:#fff}
+.nav-cta{margin-left:6px}
+.burger{display:none;background:rgba(255,255,255,.1);border:none;color:#fff;width:44px;height:44px;border-radius:10px;font-size:22px;cursor:pointer}
+@media(max-width:920px){.nav-links,.nav-cta{display:none}.burger{display:flex;align-items:center;justify-content:center}}
+.mob{position:fixed;inset:0;z-index:100;background:var(--navy);padding:18px;display:none;flex-direction:column;gap:6px;overflow-y:auto}
+.mob.open{display:flex}
+.mob-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.mob a{padding:14px 14px;border-radius:10px;color:rgba(255,255,255,.82);font-size:16px;font-weight:600;display:flex;align-items:center;gap:10px}
+.mob a:hover{background:rgba(255,255,255,.08)}
+.mob i{color:var(--aqua);font-size:19px;width:24px}
+
+/* hero */
+.hero{position:relative;background:linear-gradient(160deg,#06192c 0%,#0a2540 45%,#0e3a5c 100%);color:#fff;overflow:hidden}
+.hero::after{content:"";position:absolute;right:-12%;top:-20%;width:60%;height:140%;background:radial-gradient(circle at center,rgba(34,195,230,.22),transparent 60%);pointer-events:none}
+.hero .wrap{position:relative;z-index:2;padding:64px 18px 92px;display:grid;grid-template-columns:1.25fr .9fr;gap:42px;align-items:center}
+.hero h1{font-family:'Bebas Neue';font-size:clamp(46px,9vw,86px);line-height:.86;letter-spacing:.5px;margin:14px 0}
+.hero h1 .aq{color:var(--aqua)}
+.hero h1 .gh{-webkit-text-stroke:1.5px rgba(255,255,255,.45);color:transparent}
+.hero p{color:rgba(255,255,255,.72);max-width:430px;margin-bottom:24px}
+.hero-ctas{display:flex;gap:10px;flex-wrap:wrap}
+.hero-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.16);border-radius:14px;overflow:hidden;margin-top:30px;max-width:440px}
+.hs{background:rgba(8,28,48,.6);padding:16px;display:flex;align-items:center;gap:12px}
+.hs i{font-size:26px;color:var(--aqua);opacity:.9}
+.hs b{font-family:'Bebas Neue';font-size:26px;line-height:1;display:block}
+.hs span{font-size:11px;letter-spacing:.5px;text-transform:uppercase;color:rgba(255,255,255,.55)}
+.hero-crest{justify-self:center;width:min(330px,80%);filter:drop-shadow(0 22px 50px rgba(0,0,0,.4))}
+.hero-crest .ring{animation:sonar 3.4s ease-out infinite}
+@keyframes sonar{0%{transform:scale(.9);opacity:.5}70%{opacity:0}100%{transform:scale(1.25);opacity:0}}
+.wave{position:absolute;bottom:-1px;left:0;width:100%;z-index:1;color:var(--bg)}
+@media(max-width:820px){.hero .wrap{grid-template-columns:1fr;padding:46px 18px 86px;text-align:center}.hero p{margin-left:auto;margin-right:auto}.hero-ctas{justify-content:center}.hero-stats{margin-left:auto;margin-right:auto}.hero-crest{order:-1;width:200px}}
+
+/* live strip */
+.live{margin-top:-54px;position:relative;z-index:5}
+.live-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.lc{background:var(--card);border-radius:var(--r);box-shadow:var(--shadow);padding:18px;border-top:3px solid var(--aqua)}
+.lc-h{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.lc-h b{font:600 11px/1 'Space Grotesk';letter-spacing:1.2px;text-transform:uppercase;color:var(--muted)}
+.fx-team{display:flex;align-items:center;justify-content:space-between;padding:7px 0;font-weight:600}
+.fx-team .vs{color:var(--muted);font-size:12px;font-weight:500}
+.fx-meta{font-size:12.5px;color:var(--muted);margin-top:8px;display:flex;align-items:center;gap:6px}
+.us{color:var(--aqua2)}
+.lad{width:100%;border-collapse:collapse;font-size:13px}
+.lad th{text-align:left;font:600 10px/1 'Space Grotesk';letter-spacing:.5px;text-transform:uppercase;color:var(--muted);padding:4px 6px}
+.lad td{padding:6px 6px;border-top:1px solid var(--border);font-variant-numeric:tabular-nums}
+.lad tr.me td{background:rgba(34,195,230,.1);font-weight:700;color:var(--navy)}
+.lad td.tm{font-weight:600}
+.res-row{display:flex;align-items:center;justify-content:space-between;padding:6px 0;font-size:13.5px}
+.res-row+.res-row{border-top:1px solid var(--border)}
+@media(max-width:820px){.live-grid{grid-template-columns:1fr}.live{margin-top:-46px}}
+
+/* sections */
+section{padding:58px 0}
+.about{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+.about-card{background:var(--navy);color:#fff;border-radius:var(--r);padding:28px;box-shadow:var(--shadow)}
+.about-card .fact{display:flex;gap:12px;padding:12px 0;border-top:1px solid rgba(255,255,255,.1)}
+.about-card .fact:first-of-type{border-top:none}
+.about-card .fact i{color:var(--aqua);font-size:20px;margin-top:2px}
+.about-card .fact b{display:block;font-size:14px}
+.about-card .fact span{font-size:13px;color:rgba(255,255,255,.6)}
+@media(max-width:820px){.about{grid-template-columns:1fr}}
+
+.teams{background:var(--navy);color:#fff}
+.teams .s-hed{color:#fff}
+.team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:26px}
+.tcard{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:var(--r);padding:20px;transition:.18s}
+.tcard:hover{background:rgba(34,195,230,.1);border-color:rgba(34,195,230,.4);transform:translateY(-3px)}
+.tcard .grp{font:600 10px/1 'Space Grotesk';letter-spacing:1px;text-transform:uppercase;color:var(--aqua)}
+.tcard h3{font-size:17px;margin:8px 0 4px}
+.tcard p{font-size:13px;color:rgba(255,255,255,.6);margin-bottom:14px}
+.tcard a{font-size:13px;font-weight:700;color:var(--aqua);display:inline-flex;gap:5px;align-items:center}
+@media(max-width:820px){.team-grid{grid-template-columns:1fr}}
+
+.news-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:26px}
+.ncard{background:var(--card);border-radius:var(--r);box-shadow:var(--shadow);overflow:hidden;display:flex;flex-direction:column}
+.ncard .ph{height:120px;background:linear-gradient(135deg,var(--navy2),var(--aqua2))}
+.ncard .bd{padding:18px;display:flex;flex-direction:column;gap:8px;flex:1}
+.ncard h3{font-size:16px;line-height:1.25}
+.ncard p{font-size:13.5px;color:var(--muted);flex:1}
+.ncard .mt{font-size:12px;color:var(--muted);display:flex;gap:8px;align-items:center}
+@media(max-width:820px){.news-grid{grid-template-columns:1fr}}
+
+.spons{background:#06192c;color:#fff}
+.spon-grid{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}
+.spon{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:12px 18px;font-weight:600;font-size:13.5px;color:rgba(255,255,255,.85);transition:.15s}
+.spon:hover{background:rgba(34,195,230,.14);color:#fff}
+
+footer{background:var(--navy);color:rgba(255,255,255,.7);padding:46px 0 26px}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:30px}
+footer h4{color:#fff;font:600 12px/1 'Space Grotesk';letter-spacing:1px;text-transform:uppercase;margin-bottom:14px}
+footer a{color:rgba(255,255,255,.7);display:block;padding:3px 0;font-size:14px}
+footer a:hover{color:var(--aqua)}
+.foot-brand{display:flex;gap:12px;align-items:center;margin-bottom:14px}
+.foot-brand img{width:48px;height:48px}
+.foot-bot{border-top:1px solid rgba(255,255,255,.1);margin-top:30px;padding-top:18px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:12.5px;color:rgba(255,255,255,.5)}
+.foot-bot a{display:inline;color:var(--aqua)}
+@media(max-width:820px){.foot-grid{grid-template-columns:1fr 1fr}.foot-brand{grid-column:1/-1}}
+.sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.view-all{font-size:13px;font-weight:700;color:var(--aqua2);display:inline-flex;gap:4px;align-items:center}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar"><div class="wrap">
+  <div class="tb-l">
+    <span><i class="ti ti-map-pin"></i> Richmond Cres, East Geelong</span>
+    <span><i class="ti ti-mail"></i> info@geelongcitycc.com.au</span>
+  </div>
+  <div class="tb-r">
+    <div class="tb-soc">
+      <a href="#" data-soc="facebook" aria-label="Facebook"><i class="ti ti-brand-facebook"></i></a>
+      <a href="#" data-soc="instagram" aria-label="Instagram"><i class="ti ti-brand-instagram"></i></a>
+    </div>
+  </div>
+</div></div>
+
+<!-- NAV -->
+<nav class="nav"><div class="wrap">
+  <a class="brand" href="#"><img src="assets/gcs-crest.svg" alt="Sharks crest"><span><b>GEELONG CITY</b><small>Sharks</small></span></a>
+  <div class="nav-links">
+    <a href="#" class="active">Home</a>
+    <a href="#teams">Teams</a>
+    <a href="#matches">Match Centre</a>
+    <a href="#news">News</a>
+    <a href="player.html">Players</a>
+    <a href="#sponsors">Sponsors</a>
+  </div>
+  <a class="btn btn-aqua nav-cta" data-reg="sm" href="#">Register 25/26</a>
+  <button class="burger" aria-label="Menu" onclick="document.getElementById('mob').classList.add('open')"><i class="ti ti-menu-2"></i></button>
+</div></nav>
+
+<div class="mob" id="mob">
+  <div class="mob-top">
+    <a class="brand" href="#"><img src="assets/gcs-crest.svg" alt="" style="width:40px;height:40px"><b style="font-family:'Bebas Neue';font-size:20px">SHARKS</b></a>
+    <button class="burger" style="display:flex" aria-label="Close" onclick="document.getElementById('mob').classList.remove('open')"><i class="ti ti-x"></i></button>
+  </div>
+  <a href="#"><i class="ti ti-home"></i> Home</a>
+  <a href="#teams"><i class="ti ti-friends"></i> Teams</a>
+  <a href="#matches"><i class="ti ti-cricket"></i> Match Centre</a>
+  <a href="#news"><i class="ti ti-news"></i> News</a>
+  <a href="player.html"><i class="ti ti-user"></i> Players</a>
+  <a href="#sponsors"><i class="ti ti-businessplan"></i> Sponsors</a>
+  <a class="btn btn-aqua" data-reg="sm" href="#" style="justify-content:center;margin-top:10px">Register for 2025/26</a>
+</div>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow">Geelong Cricket Association · Div 2</span>
+      <h1>HOME OF THE <span class="aq">SHARKS</span><br><span class="gh">SINCE 1928</span></h1>
+      <p id="heroBody"></p>
+      <div class="hero-ctas">
+        <a class="btn btn-aqua" data-reg="sm" href="#">Register to play <i class="ti ti-arrow-right"></i></a>
+        <a class="btn btn-ghost" href="#matches">Match Centre</a>
+      </div>
+      <div class="hero-stats" id="heroStats"></div>
+    </div>
+    <div class="hero-crest">
+      <svg viewBox="0 0 200 200" style="overflow:visible">
+        <circle class="ring" cx="100" cy="100" r="92" fill="none" stroke="#22c3e6" stroke-width="2"/>
+      </svg>
+      <img src="assets/gcs-crest.svg" alt="Geelong City Sharks crest" style="margin-top:-200px">
+    </div>
+  </div>
+  <svg class="wave" viewBox="0 0 1440 80" preserveAspectRatio="none" height="60"><path fill="currentColor" d="M0,40 C240,90 480,0 720,30 C960,60 1200,10 1440,40 L1440,80 L0,80 Z"/></svg>
+</header>
+
+<!-- LIVE STRIP -->
+<div class="live"><div class="wrap"><div class="live-grid">
+  <div class="lc" id="cardFixture"><div class="lc-h"><b>Next Fixture</b><span class="pill pill-aqua">1st XI</span></div><div class="ld-body">Loading…</div></div>
+  <div class="lc" id="cardLadder"><div class="lc-h"><b>GCA Div 2 Ladder</b><span class="pill pill-sample">Sample</span></div><div class="ld-body">Loading…</div></div>
+  <div class="lc" id="cardResult"><div class="lc-h"><b>Latest Results</b><span class="pill pill-sample">Sample</span></div><div class="ld-body">Loading…</div></div>
+</div></div></div>
+
+<!-- ABOUT -->
+<section><div class="wrap about">
+  <div>
+    <span class="eyebrow">The Club</span>
+    <h2 class="s-hed">A community club with a turf-wicket heart</h2>
+    <p id="aboutBody" style="color:var(--muted);max-width:520px"></p>
+    <div style="margin-top:18px"><a class="btn btn-navy" href="#teams">Find your team <i class="ti ti-arrow-right"></i></a></div>
+  </div>
+  <div class="about-card" id="aboutFacts"></div>
+</div></section>
+
+<!-- TEAMS -->
+<section class="teams" id="teams"><div class="wrap">
+  <span class="eyebrow" style="color:var(--aqua)">Pick a side</span>
+  <h2 class="s-hed">Teams for every age &amp; ability</h2>
+  <div class="team-grid" id="teamGrid"></div>
+</div></section>
+
+<!-- NEWS -->
+<section id="news"><div class="wrap">
+  <div class="sec-head">
+    <div><span class="eyebrow">From the rooms</span><h2 class="s-hed">Latest news</h2></div>
+    <a class="view-all" href="#">All news <i class="ti ti-arrow-right"></i></a>
+  </div>
+  <div class="news-grid" id="newsGrid"></div>
+</div></section>
+
+<!-- SPONSORS -->
+<section class="spons" id="sponsors"><div class="wrap">
+  <span class="eyebrow" style="color:var(--aqua)">Backing the Sharks</span>
+  <h2 class="s-hed" style="color:#fff">Our partners</h2>
+  <p style="color:rgba(255,255,255,.6);max-width:560px">Our sponsors keep the Sharks on the park. Please support the businesses that support our club.</p>
+  <div class="spon-grid" id="sponGrid"></div>
+</div></section>
+
+<!-- FOOTER -->
+<footer><div class="wrap">
+  <div class="foot-grid">
+    <div>
+      <div class="foot-brand"><img src="assets/gcs-crest.svg" alt=""><div><b style="font-family:'Bebas Neue';font-size:22px;color:#fff;letter-spacing:.6px">GEELONG CITY SHARKS</b><div style="font-size:12px;color:var(--aqua)">Geelong City Cricket Club · Est 1928</div></div></div>
+      <p style="font-size:13.5px;max-width:330px">Richmond Crescent, East Geelong VIC 3219. Member of the Geelong Cricket Association.</p>
+    </div>
+    <div><h4>Club</h4><a href="#teams">Teams</a><a href="#matches">Match Centre</a><a href="player.html">Players</a><a href="#news">News</a></div>
+    <div><h4>Get involved</h4><a data-reg="sm" href="#">Register</a><a href="#sponsors">Sponsor us</a><a href="mailto:info@geelongcitycc.com.au">Contact</a><a href="#" data-soc="facebook">Facebook</a></div>
+  </div>
+  <div class="foot-bot">
+    <div>© <span id="yr"></span> Geelong City Cricket Club. All rights reserved.</div>
+    <div>Website by <a href="https://sportsweb.com.au">SportsWeb One</a> · <span id="apiState"></span></div>
+  </div>
+</div></footer>
+
+<script src="assets/gcs-data.js"></script>
+<script src="assets/gcs-api.js"></script>
+<script>
+(function(){
+  var D=window.GCS_DATA, A=window.GCS_API;
+  function esc(s){return String(s==null?"":s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+  document.getElementById('yr').textContent=new Date().getFullYear();
+  document.getElementById('heroBody').textContent=D.about.body;
+  document.getElementById('aboutBody').textContent=D.about.body;
+  document.getElementById('apiState').textContent=A.live?'Live data':'Placeholder data';
+
+  // socials + register links
+  document.querySelectorAll('[data-soc]').forEach(function(a){a.href=D.meta[a.dataset.soc]||'#'});
+  var smReg=(D.teams.find(function(t){return t.key==='sm-1'})||{}).register||'#';
+  document.querySelectorAll('[data-reg]').forEach(function(a){a.href=smReg});
+
+  // hero stats
+  document.getElementById('heroStats').innerHTML=D.stats.map(function(s){
+    return '<div class="hs"><i class="ti '+s.ic+'"></i><div><b>'+esc(s.val)+'</b><span>'+esc(s.lbl)+'</span></div></div>';
+  }).join('');
+
+  // about facts
+  document.getElementById('aboutFacts').innerHTML=
+    fact('ti-map-pin','Home ground',D.meta.groundLabel+' — Richmond Crescent')+
+    fact('ti-cricket','Competition',D.meta.assoc+' · '+D.meta.grade)+
+    fact('ti-calendar','Established',D.meta.est+' — over 95 years of cricket')+
+    fact('ti-friends','Teams','6 senior + 7 junior sides, all welcome');
+  function fact(i,b,s){return '<div class="fact"><i class="ti '+i+'"></i><div><b>'+esc(b)+'</b><span>'+esc(s)+'</span></div></div>'}
+
+  // teams
+  document.getElementById('teamGrid').innerHTML=D.teams.map(function(t){
+    return '<div class="tcard"><div class="grp">'+esc(t.group)+' · '+esc(t.surface)+'</div>'+
+      '<h3>'+esc(t.name)+'</h3><p>'+esc(t.grade)+' · Coord. '+esc(t.coord)+'</p>'+
+      '<a href="'+esc(t.register)+'" target="_blank" rel="noopener">Register <i class="ti ti-external-link"></i></a></div>';
+  }).join('');
+
+  // news
+  document.getElementById('newsGrid').innerHTML=D.news.map(function(n){
+    return '<article class="ncard"><div class="ph"></div><div class="bd">'+
+      '<div class="mt"><span class="pill pill-aqua">'+esc(n.tag)+'</span> '+(n.sample?'<span class="pill pill-sample">Sample</span>':'')+'<span style="margin-left:auto">'+esc(n.date)+'</span></div>'+
+      '<h3>'+esc(n.title)+'</h3><p>'+esc(n.blurb)+'</p>'+
+      '<a class="view-all" href="#">Read more <i class="ti ti-arrow-right"></i></a></div></article>';
+  }).join('');
+
+  // sponsors
+  document.getElementById('sponGrid').innerHTML=D.sponsors.map(function(s){
+    return '<a class="spon" href="'+esc(s.url)+'" target="_blank" rel="noopener">'+esc(s.name)+'</a>';
+  }).join('');
+
+  // ---- live data via API (placeholder today) ----
+  A.getFixtures('sm-1').then(function(f){
+    var x=f.rows[0];
+    document.querySelector('#cardFixture .ld-body').innerHTML=
+      '<div class="fx-team"><span class="'+(x.us==='home'?'us':'')+'">'+esc(x.home)+'</span><span class="vs">vs</span><span class="'+(x.us==='away'?'us':'')+'">'+esc(x.away)+'</span></div>'+
+      '<div class="fx-meta"><i class="ti ti-calendar"></i> '+esc(x.round)+' · '+esc(x.date)+' '+esc(x.time)+'</div>'+
+      '<div class="fx-meta"><i class="ti ti-map-pin"></i> '+esc(x.venue)+'</div>';
+  });
+  A.getLadder('gca-div2').then(function(l){
+    var rows=l.rows.slice(0,5).map(function(r){
+      return '<tr class="'+(r.us?'me':'')+'"><td>'+r.pos+'</td><td class="tm">'+esc(r.team)+'</td><td>'+r.W+'</td><td>'+r.L+'</td><td>'+r.pts+'</td></tr>';
+    }).join('');
+    document.querySelector('#cardLadder .ld-body').innerHTML=
+      '<table class="lad"><thead><tr><th>#</th><th>Team</th><th>W</th><th>L</th><th>Pts</th></tr></thead><tbody>'+rows+'</tbody></table>';
+  });
+  A.getResults('sm-1').then(function(r){
+    document.querySelector('#cardResult .ld-body').innerHTML=r.rows.slice(0,3).map(function(m){
+      return '<div class="res-row"><span>'+esc(m.home)+' v '+esc(m.away)+'</span><span class="pill '+(m.us==='win'?'pill-win':'pill-loss')+'">'+(m.us==='win'?'W':'L')+'</span></div>';
+    }).join('');
+  });
+})();
+</script>
+</body>
+</html>

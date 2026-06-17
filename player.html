@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<!-- ============================================================================
+     GEELONG CITY SHARKS — Player Profile  (player.html)
+     ----------------------------------------------------------------------------
+     Data-driven from assets/gcs-data.js (window.GCS_DATA.players).
+     URL: player.html?player=<key>   e.g. player.html?player=j-marsh
+     No key → defaults to first player. A picker grid lets you switch players
+     and deep-links update the URL. All six players are SAMPLE placeholders.
+
+     CONNECT → SportsWeb One: replace GCS_DATA.players with a live roster feed.
+     Each player object shape is documented in gcs-data.js. Swap `photo:""`
+     for a real headshot URL (Click Sports Media cut-outs) and the crest
+     fallback disappears automatically.
+     ========================================================================= -->
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Players — Geelong City Sharks</title>
+<link rel="icon" href="assets/gcs-crest.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.47.0/tabler-icons.min.css">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#0a2540;--navy2:#0e3a5c;--navy3:#15446e;--aqua:#22c3e6;--aqua2:#0aa6c9;
+  --ink:#0a1722;--bg:#eef3f7;--card:#fff;--border:rgba(10,37,64,.10);--muted:#5d6f81;
+  --gold:#e7b24a;
+  --r:16px;--rsm:10px;--shadow:0 1px 3px rgba(10,37,64,.08),0 8px 28px rgba(10,37,64,.07);
+}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',system-ui,sans-serif;background:var(--bg);color:var(--ink);font-size:15px;line-height:1.55;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+.wrap{width:min(1120px,92vw);margin:0 auto}
+
+/* ---- top bar / nav ---- */
+.topbar{background:var(--navy);color:#fff;font-size:12.5px}
+.topbar .wrap{display:flex;gap:16px;align-items:center;justify-content:space-between;padding:7px 0;flex-wrap:wrap}
+.topbar a{color:#cfe6f2;display:inline-flex;gap:6px;align-items:center}
+.topbar .meta{display:flex;gap:16px;flex-wrap:wrap}
+nav.bar{position:sticky;top:0;z-index:50;background:rgba(10,37,64,.96);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,.08)}
+nav.bar .wrap{display:flex;align-items:center;justify-content:space-between;padding:10px 0}
+.brand{display:flex;gap:10px;align-items:center}
+.brand img{width:40px;height:40px}
+.brand b{font-family:'Bebas Neue';font-size:22px;letter-spacing:.8px;color:#fff;line-height:1}
+.brand span{display:block;font-size:10px;letter-spacing:2px;color:var(--aqua);text-transform:uppercase}
+.links{display:flex;gap:4px;align-items:center}
+.links a{color:#dce8f1;padding:9px 13px;border-radius:8px;font-weight:600;font-size:14px}
+.links a:hover{background:rgba(255,255,255,.08)}
+.links a.cta{background:var(--aqua);color:var(--navy);font-weight:700}
+.burger{display:none;background:none;border:0;color:#fff;font-size:26px;cursor:pointer}
+.mobile{display:none;background:var(--navy2);border-top:1px solid rgba(255,255,255,.08)}
+.mobile a{display:block;color:#dce8f1;padding:13px 0;border-bottom:1px solid rgba(255,255,255,.06);font-weight:600}
+.mobile .wrap{display:block}
+@media(max-width:860px){.links{display:none}.burger{display:block}.mobile.open{display:block}}
+
+/* ---- page head ---- */
+.phead{background:linear-gradient(160deg,var(--navy),var(--navy3));color:#fff;padding:30px 0 22px;position:relative;overflow:hidden}
+.phead::after{content:"";position:absolute;right:-60px;bottom:-80px;width:280px;height:280px;background:radial-gradient(circle,rgba(34,195,230,.30),transparent 65%);pointer-events:none}
+.phead .wrap{position:relative;z-index:1}
+.crumb{font-size:13px;color:var(--aqua);display:inline-flex;gap:7px;align-items:center;margin-bottom:8px}
+.phead h1{font-family:'Bebas Neue';font-size:clamp(34px,6vw,54px);letter-spacing:.6px;line-height:.95}
+.phead p{color:#bcd4e3;max-width:60ch;margin-top:4px}
+
+/* ---- layout ---- */
+.layout{display:grid;grid-template-columns:340px 1fr;gap:30px;align-items:start;padding:30px 0 10px}
+@media(max-width:880px){.layout{grid-template-columns:1fr;gap:24px}}
+
+/* ---- TRADING CARD ---- */
+.cardstage{perspective:1400px;position:sticky;top:84px}
+@media(max-width:880px){.cardstage{position:static}}
+.tc{
+  position:relative;width:100%;aspect-ratio:5/7;cursor:pointer;
+  transform-style:preserve-3d;transition:transform .7s cubic-bezier(.2,.7,.2,1);
+}
+.tc.flipped{transform:rotateY(180deg)}
+.tc .face{
+  position:absolute;inset:0;backface-visibility:hidden;border-radius:18px;overflow:hidden;
+  box-shadow:0 18px 48px rgba(10,37,64,.34),0 2px 0 rgba(255,255,255,.4) inset;
+  border:1px solid rgba(255,255,255,.14);
+}
+/* front */
+.tc .front{background:linear-gradient(165deg,var(--navy2),var(--navy));color:#fff;display:flex;flex-direction:column}
+.tc .front .sheen{position:absolute;inset:0;background:linear-gradient(115deg,transparent 30%,rgba(34,195,230,.18) 46%,rgba(255,255,255,.28) 50%,rgba(34,195,230,.18) 54%,transparent 70%);opacity:0;transition:opacity .4s;mix-blend-mode:screen;pointer-events:none}
+.tc:hover .front .sheen{opacity:1}
+.tc .ribbon{position:absolute;top:14px;left:-34px;transform:rotate(-45deg);background:var(--aqua);color:var(--navy);font-weight:800;font-size:10.5px;letter-spacing:1px;text-transform:uppercase;padding:5px 40px;box-shadow:0 2px 8px rgba(0,0,0,.25);z-index:3}
+.tc .num{position:absolute;top:12px;right:14px;font-family:'Bebas Neue';font-size:40px;line-height:1;color:rgba(255,255,255,.9);text-shadow:0 2px 10px rgba(0,0,0,.3);z-index:3}
+.tc .portrait{flex:1;position:relative;display:flex;align-items:center;justify-content:center;background:radial-gradient(120% 90% at 50% 18%,var(--navy3),var(--navy) 75%)}
+.tc .portrait img{width:100%;height:100%;object-fit:cover;object-position:top center}
+.tc .portrait .ph{display:flex;flex-direction:column;align-items:center;gap:10px;opacity:.85}
+.tc .portrait .ph img{width:120px;height:120px;object-fit:contain;filter:drop-shadow(0 8px 18px rgba(0,0,0,.4))}
+.tc .portrait .ph small{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--aqua)}
+.tc .wave{position:absolute;left:0;right:0;bottom:118px;height:34px;background:var(--aqua);clip-path:polygon(0 55%,8% 35%,18% 55%,28% 32%,38% 55%,48% 33%,58% 55%,68% 34%,78% 55%,88% 33%,100% 55%,100% 100%,0 100%);opacity:.92}
+.tc .plate{background:var(--navy);padding:14px 16px 16px;border-top:2px solid var(--aqua);position:relative;z-index:2}
+.tc .plate h2{font-family:'Bebas Neue';font-size:30px;letter-spacing:.6px;line-height:.9}
+.tc .plate .role{color:var(--aqua);font-weight:700;font-size:12.5px;text-transform:uppercase;letter-spacing:.6px}
+.tc .plate .team{color:#bcd4e3;font-size:12px;margin-top:3px}
+.tc .fliphint{position:absolute;bottom:10px;right:12px;font-size:10.5px;color:#bcd4e3;display:inline-flex;gap:5px;align-items:center;z-index:3}
+/* back */
+.tc .back{transform:rotateY(180deg);background:linear-gradient(165deg,#0c2c49,var(--navy));color:#fff;padding:18px 16px;display:flex;flex-direction:column}
+.tc .back h3{font-family:'Bebas Neue';font-size:22px;letter-spacing:.5px;color:var(--aqua);border-bottom:1px solid rgba(255,255,255,.12);padding-bottom:6px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:baseline}
+.tc .back h3 small{font-size:11px;color:#bcd4e3;font-family:'DM Sans';letter-spacing:0}
+.sgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-bottom:12px}
+.sgrid.two{grid-template-columns:repeat(3,1fr)}
+.scell{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);border-radius:9px;padding:8px 6px;text-align:center}
+.scell b{font-family:'Space Grotesk';font-size:18px;display:block;line-height:1.1}
+.scell span{font-size:9.5px;letter-spacing:.8px;text-transform:uppercase;color:#9fc0d4}
+.tc .back .bk-label{font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--aqua);font-weight:700;margin:2px 0 7px;display:flex;gap:6px;align-items:center}
+.tc .back .none{font-size:12px;color:#9fc0d4;font-style:italic;margin-bottom:10px}
+.tc .back .foot{margin-top:auto;font-size:11px;color:#bcd4e3;display:flex;justify-content:space-between;border-top:1px solid rgba(255,255,255,.10);padding-top:9px}
+
+.flipbtn{margin-top:12px;width:100%;background:var(--navy);color:#fff;border:0;border-radius:10px;padding:11px;font-weight:700;font-family:'DM Sans';cursor:pointer;display:inline-flex;gap:8px;align-items:center;justify-content:center}
+.flipbtn:hover{background:var(--navy2)}
+
+/* ---- detail column ---- */
+.panel{background:var(--card);border:1px solid var(--border);border-radius:var(--r);box-shadow:var(--shadow);padding:20px 20px 18px;margin-bottom:20px}
+.panel h2.s-hed{font-family:'Bebas Neue';font-size:26px;letter-spacing:.5px;color:var(--navy);margin-bottom:2px}
+.panel .sub{color:var(--muted);font-size:13px;margin-bottom:14px}
+.bio{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+@media(max-width:520px){.bio{grid-template-columns:1fr}}
+.bio .row{display:flex;gap:10px;align-items:flex-start}
+.bio .row i{color:var(--aqua2);font-size:19px;margin-top:1px}
+.bio .row .k{font-size:11px;letter-spacing:.6px;text-transform:uppercase;color:var(--muted)}
+.bio .row .v{font-weight:600}
+.pill{display:inline-flex;gap:6px;align-items:center;background:rgba(34,195,230,.14);color:var(--aqua2);font-weight:700;font-size:11px;letter-spacing:.5px;text-transform:uppercase;padding:4px 10px;border-radius:999px}
+.pill.sample{background:rgba(231,178,74,.16);color:#a9791f}
+
+/* season table */
+.statwrap{overflow-x:auto}
+table.stat{width:100%;border-collapse:collapse;font-size:13.5px;min-width:420px}
+table.stat th,table.stat td{padding:9px 8px;text-align:center;border-bottom:1px solid var(--border)}
+table.stat th{background:var(--navy);color:#fff;font-family:'Space Grotesk';font-weight:600;font-size:11px;letter-spacing:.5px;text-transform:uppercase}
+table.stat th:first-child,table.stat td:first-child{text-align:left;font-weight:700}
+table.stat tr:last-child td{border-bottom:0}
+table.stat td b{font-family:'Space Grotesk'}
+
+/* picker */
+.picker{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
+.pcard{background:var(--card);border:1px solid var(--border);border-radius:var(--rsm);padding:12px;cursor:pointer;transition:transform .15s,box-shadow .15s,border-color .15s;text-align:left;display:flex;gap:11px;align-items:center}
+.pcard:hover{transform:translateY(-2px);box-shadow:var(--shadow);border-color:var(--aqua)}
+.pcard.active{border-color:var(--aqua);box-shadow:0 0 0 2px rgba(34,195,230,.35)}
+.pcard .av{width:44px;height:44px;border-radius:10px;background:linear-gradient(160deg,var(--navy2),var(--navy));color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue';font-size:20px;flex:0 0 auto}
+.pcard .nm{font-weight:700;font-size:14px;line-height:1.1}
+.pcard .rl{font-size:11.5px;color:var(--muted)}
+
+/* footer */
+footer{background:var(--navy);color:#cfe1ee;margin-top:30px;padding:30px 0 22px;font-size:13.5px}
+footer .grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:24px}
+@media(max-width:760px){footer .grid{grid-template-columns:1fr;gap:18px}}
+footer h4{color:#fff;font-family:'Bebas Neue';letter-spacing:.5px;font-size:18px;margin-bottom:8px}
+footer a{display:block;color:#a8c6d8;padding:3px 0}
+footer a:hover{color:var(--aqua)}
+.foot-b{border-top:1px solid rgba(255,255,255,.1);margin-top:22px;padding-top:14px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:12px;color:#88a8bd}
+.sw1{color:var(--aqua);font-weight:700}
+.apistate{display:inline-flex;gap:6px;align-items:center}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 3px rgba(231,178,74,.2)}
+
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}.tc{transition:none}}
+</style>
+</head>
+<body>
+
+<!-- top bar -->
+<div class="topbar"><div class="wrap">
+  <div class="meta">
+    <a href="#"><i class="ti ti-map-pin"></i> Richmond Reserve, East Geelong</a>
+    <a href="mailto:info@geelongcitycc.com.au"><i class="ti ti-mail"></i> info@geelongcitycc.com.au</a>
+  </div>
+  <div class="meta">
+    <a href="https://www.facebook.com/geelongcitycricketclub" target="_blank" rel="noopener"><i class="ti ti-brand-facebook"></i> Facebook</a>
+    <a href="https://www.instagram.com/geelongcitycc/" target="_blank" rel="noopener"><i class="ti ti-brand-instagram"></i> Instagram</a>
+  </div>
+</div></div>
+
+<!-- nav -->
+<nav class="bar"><div class="wrap">
+  <a class="brand" href="design1-deepwater.html">
+    <img src="assets/gcs-crest.svg" alt="Geelong City Sharks crest">
+    <span style="line-height:1.05"><b>GEELONG CITY SHARKS</b><span>Home of the Sharks · 1928</span></span>
+  </a>
+  <div class="links">
+    <a href="design1-deepwater.html">Home</a>
+    <a href="design1-deepwater.html#teams">Teams</a>
+    <a href="design1-deepwater.html#matches">Match Centre</a>
+    <a href="player.html" class="cta"><i class="ti ti-user"></i> Players</a>
+  </div>
+  <button class="burger" aria-label="Menu" onclick="document.getElementById('mob').classList.toggle('open')">&#9776;</button>
+</div>
+<div class="mobile" id="mob"><div class="wrap">
+  <a href="design1-deepwater.html">Home</a>
+  <a href="design1-deepwater.html#teams">Teams</a>
+  <a href="design1-deepwater.html#matches">Match Centre</a>
+  <a href="player.html">Players</a>
+</div></div></nav>
+
+<!-- page head -->
+<header class="phead"><div class="wrap">
+  <span class="crumb"><a href="design1-deepwater.html" style="color:var(--aqua)"><i class="ti ti-arrow-left"></i> Back to club</a> &nbsp;·&nbsp; Players</span>
+  <h1>Player Profiles</h1>
+  <p>Meet the Sharks. Tap a card to flip for full season stats, or pick another player below. <strong>Sample squad shown</strong> — live profiles connect through SportsWeb One.</p>
+</div></header>
+
+<main class="wrap">
+  <div class="layout">
+
+    <!-- TRADING CARD -->
+    <div>
+      <div class="cardstage">
+        <div class="tc" id="tc" onclick="if(!event.target.closest('a,button'))flip()">
+          <!-- FRONT -->
+          <div class="face front">
+            <div class="sheen"></div>
+            <div class="ribbon" id="ribbon">CAPTAIN</div>
+            <div class="num" id="cnum">12</div>
+            <div class="portrait">
+              <img id="cphoto" alt="" style="display:none">
+              <div class="ph" id="cph">
+                <img src="assets/gcs-crest.svg" alt="Geelong City Sharks crest">
+                <small>Photo coming soon</small>
+              </div>
+            </div>
+            <div class="wave"></div>
+            <div class="plate">
+              <h2 id="cname">Jack Marsh</h2>
+              <div class="role" id="crole">Opening Batter</div>
+              <div class="team" id="cteam">Senior Men — 1st XI</div>
+            </div>
+            <span class="fliphint"><i class="ti ti-rotate-360"></i> tap to flip</span>
+          </div>
+          <!-- BACK -->
+          <div class="face back">
+            <h3>Season Stats <small id="bseason">2024/25</small></h3>
+            <div class="bk-label"><i class="ti ti-cricket"></i> Batting</div>
+            <div class="sgrid" id="batgrid"></div>
+            <div class="bk-label"><i class="ti ti-ball-baseball"></i> Bowling</div>
+            <div id="bowlwrap"><div class="sgrid two" id="bowlgrid"></div></div>
+            <div class="foot"><span id="bnum">#12</span><span id="bteam">Senior Men — 1st XI</span></div>
+          </div>
+        </div>
+        <button class="flipbtn" onclick="flip()"><i class="ti ti-rotate-360"></i> <span id="flipword">Show season stats</span></button>
+      </div>
+    </div>
+
+    <!-- DETAIL -->
+    <div>
+      <section class="panel">
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px">
+          <span class="pill" id="rarpill"><i class="ti ti-star"></i> Captain</span>
+          <span class="pill sample"><i class="ti ti-flask"></i> Sample profile</span>
+        </div>
+        <h2 class="s-hed" id="dname">Jack Marsh</h2>
+        <div class="sub" id="dgrade">GCA Division 2 · Senior Men — 1st XI</div>
+        <div class="bio" id="bio"></div>
+      </section>
+
+      <section class="panel">
+        <h2 class="s-hed">Season Summary</h2>
+        <div class="sub" id="ssub">2024/25 season — sample data</div>
+        <div class="statwrap">
+          <table class="stat" id="seasontable"></table>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2 class="s-hed">The Squad</h2>
+        <div class="sub">Select a player to view their card &amp; stats.</div>
+        <div class="picker" id="picker"></div>
+      </section>
+    </div>
+
+  </div>
+</main>
+
+<footer><div class="wrap">
+  <div class="grid">
+    <div>
+      <h4>Geelong City Sharks</h4>
+      <p style="color:#a8c6d8;max-width:34ch">Home of the Sharks since 1928. Proud members of the Geelong Cricket Association.</p>
+      <p style="margin-top:10px;color:#a8c6d8"><i class="ti ti-map-pin"></i> Richmond Cres, East Geelong VIC 3219</p>
+    </div>
+    <div>
+      <h4>Club</h4>
+      <a href="design1-deepwater.html#teams">Teams</a>
+      <a href="design1-deepwater.html#matches">Match Centre</a>
+      <a href="player.html">Players</a>
+      <a href="design1-deepwater.html#news">News</a>
+    </div>
+    <div>
+      <h4>Connect</h4>
+      <a href="https://www.facebook.com/geelongcitycricketclub" target="_blank" rel="noopener">Facebook</a>
+      <a href="https://www.instagram.com/geelongcitycc/" target="_blank" rel="noopener">Instagram</a>
+      <a href="mailto:info@geelongcitycc.com.au">info@geelongcitycc.com.au</a>
+    </div>
+  </div>
+  <div class="foot-b">
+    <span>© <span id="yr"></span> Geelong City Cricket Club. Powered by <span class="sw1">SportsWeb One</span>.</span>
+    <span class="apistate"><span class="dot"></span> Player data: <strong style="color:#cfe1ee">&nbsp;sample mode</strong></span>
+  </div>
+</div></footer>
+
+<script src="assets/gcs-data.js"></script>
+<script>
+(function(){
+  var D = window.GCS_DATA || {players:[]};
+  var players = D.players || [];
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  function qp(name){ return new URLSearchParams(location.search).get(name); }
+  function byKey(k){ return players.find(function(p){return p.key===k;}); }
+
+  var current = byKey(qp('player')) || players[0];
+
+  // batting label order
+  var BAT = [['M','Mat'],['Runs','Runs'],['HS','HS'],['Avg','Avg'],['SR','SR'],['50s','50s'],['100s','100s']];
+  var BOWL = [['M','Mat'],['Wkts','Wkts'],['Best','Best'],['Avg','Avg'],['Econ','Econ']];
+
+  function cellHTML(val,label){
+    return '<div class="scell"><b>'+(val!=null?val:'—')+'</b><span>'+label+'</span></div>';
+  }
+
+  function render(p){
+    if(!p) return;
+    current = p;
+
+    // front
+    document.getElementById('cname').textContent = p.name;
+    document.getElementById('crole').textContent = p.role;
+    document.getElementById('cteam').textContent = p.team;
+    document.getElementById('cnum').textContent = p.number!=null?p.number:'';
+    var rib = document.getElementById('ribbon');
+    rib.textContent = p.rarity || 'Sharks';
+    rib.style.display = p.rarity ? 'block':'none';
+
+    // photo or crest fallback
+    var img = document.getElementById('cphoto'), ph = document.getElementById('cph');
+    if(p.photo){ img.src=p.photo; img.alt=p.name; img.style.display='block'; ph.style.display='none'; }
+    else { img.style.display='none'; ph.style.display='flex'; }
+
+    // back
+    document.getElementById('bseason').textContent = p.season || '';
+    document.getElementById('bnum').textContent = p.number!=null?('#'+p.number):'';
+    document.getElementById('bteam').textContent = p.team;
+
+    var bg = document.getElementById('batgrid');
+    bg.innerHTML = p.bat ? BAT.map(function(f){return cellHTML(p.bat[f[0]],f[1]);}).join('')
+                         : '<div class="none" style="grid-column:1/-1">No batting record.</div>';
+
+    var bw = document.getElementById('bowlgrid'), bwWrap = document.getElementById('bowlwrap');
+    if(p.bowl){ bw.innerHTML = BOWL.map(function(f){return cellHTML(p.bowl[f[0]],f[1]);}).join('');
+      bwWrap.querySelector('.sgrid').style.display='grid'; bwWrap.innerHTML='<div class="sgrid two" id="bowlgrid">'+bw.innerHTML+'</div>'; }
+    else { bwWrap.innerHTML = '<div class="none">Does not bowl.</div>'; }
+
+    // detail
+    document.getElementById('dname').textContent = p.name;
+    document.getElementById('dgrade').textContent = p.grade + ' · ' + p.team;
+    document.getElementById('rarpill').innerHTML = '<i class="ti ti-star"></i> ' + (p.rarity||'Squad member');
+    document.getElementById('ssub').textContent = (p.season||'') + ' season — sample data';
+
+    var rows = [
+      ['ti-shirt','Squad No.', p.number!=null?('#'+p.number):'—'],
+      ['ti-users','Team', p.team],
+      ['ti-trophy','Grade', p.grade],
+      ['ti-cricket','Bats', p.bats||'—'],
+      ['ti-ball-baseball','Bowls', p.bowls&&p.bowls!=='-'?p.bowls:'—'],
+      ['ti-calendar','Born', p.born||'—'],
+      ['ti-map-pin','From', p.town||'—'],
+      ['ti-star','Honour', p.rarity||'—']
+    ];
+    document.getElementById('bio').innerHTML = rows.map(function(r){
+      return '<div class="row"><i class="ti '+r[0]+'"></i><div><div class="k">'+r[1]+'</div><div class="v">'+r[2]+'</div></div></div>';
+    }).join('');
+
+    // season table
+    var t = document.getElementById('seasontable');
+    var head = '<tr><th>Discipline</th><th>Mat</th><th>Runs / Wkts</th><th>Best</th><th>Avg</th><th>SR / Econ</th></tr>';
+    var bodyRows = '';
+    if(p.bat){
+      bodyRows += '<tr><td>Batting</td><td>'+v(p.bat.M)+'</td><td><b>'+v(p.bat.Runs)+'</b></td><td>'+v(p.bat.HS)+'</td><td>'+v(p.bat.Avg)+'</td><td>'+v(p.bat.SR)+'</td></tr>';
+    }
+    if(p.bowl){
+      bodyRows += '<tr><td>Bowling</td><td>'+v(p.bowl.M)+'</td><td><b>'+v(p.bowl.Wkts)+'</b></td><td>'+v(p.bowl.Best)+'</td><td>'+v(p.bowl.Avg)+'</td><td>'+v(p.bowl.Econ)+'</td></tr>';
+    }
+    if(!bodyRows) bodyRows = '<tr><td colspan="6" style="text-align:center;color:var(--muted)">No statistics recorded.</td></tr>';
+    t.innerHTML = head + bodyRows;
+
+    // picker active state
+    Array.prototype.forEach.call(document.querySelectorAll('.pcard'),function(el){
+      el.classList.toggle('active', el.getAttribute('data-key')===p.key);
+    });
+
+    // reset flip
+    document.getElementById('tc').classList.remove('flipped');
+    document.getElementById('flipword').textContent='Show season stats';
+  }
+  function v(x){ return x!=null?x:'—'; }
+
+  // picker
+  document.getElementById('picker').innerHTML = players.map(function(p){
+    var initials = p.name.split(' ').map(function(s){return s[0];}).join('').slice(0,2).toUpperCase();
+    return '<button class="pcard" data-key="'+p.key+'" onclick="selectPlayer(\''+p.key+'\')">'+
+      '<div class="av">'+initials+'</div>'+
+      '<div><div class="nm">'+p.name+'</div><div class="rl">'+p.role+'</div></div></button>';
+  }).join('');
+
+  window.selectPlayer = function(k){
+    var p = byKey(k); if(!p) return;
+    render(p);
+    history.replaceState(null,'','player.html?player='+k);
+    if(window.matchMedia('(max-width:880px)').matches){
+      document.querySelector('.cardstage').scrollIntoView({behavior:'smooth',block:'start'});
+    }
+  };
+  window.flip = function(){
+    var tc=document.getElementById('tc'); tc.classList.toggle('flipped');
+    document.getElementById('flipword').textContent = tc.classList.contains('flipped')?'Show profile':'Show season stats';
+  };
+
+  render(current);
+})();
+</script>
+</body>
+</html>

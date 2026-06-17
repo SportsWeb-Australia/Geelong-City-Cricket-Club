@@ -1,0 +1,29 @@
+<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Geelong City Sharks crest">
+  <!-- PLACEHOLDER CREST — swap for the official Sharks_logo_trans webp when wiring to production -->
+  <defs>
+    <linearGradient id="gcsNavy" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#103a63"/>
+      <stop offset="1" stop-color="#0a2540"/>
+    </linearGradient>
+    <linearGradient id="gcsAqua" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#3fd0e6"/>
+      <stop offset="1" stop-color="#06a3c2"/>
+    </linearGradient>
+  </defs>
+  <circle cx="100" cy="100" r="96" fill="url(#gcsNavy)" stroke="#06a3c2" stroke-width="4"/>
+  <circle cx="100" cy="100" r="84" fill="none" stroke="rgba(255,255,255,.16)" stroke-width="1.5"/>
+  <!-- water band -->
+  <path d="M16 128 q 21 -14 42 0 t 42 0 t 42 0 t 42 0 V160 q -21 14 -42 0 t -42 0 t -42 0 t -42 0 Z" fill="url(#gcsAqua)" opacity="0.9"/>
+  <!-- shark fin + body silhouette -->
+  <path d="M58 126 C70 96 92 70 134 58 C120 74 116 86 118 96 C140 92 150 104 156 118 C140 112 126 114 116 122 C104 113 78 116 58 126 Z" fill="#f4f8fb"/>
+  <path d="M96 70 C99 84 99 96 96 108 L88 104 C90 92 90 82 88 74 Z" fill="#0a2540" opacity="0.25"/>
+  <!-- top + bottom text -->
+  <path id="topArc" d="M40 100 A60 60 0 0 1 160 100" fill="none"/>
+  <path id="botArc" d="M48 118 A56 56 0 0 0 152 118" fill="none"/>
+  <text font-family="'Bebas Neue','Arial Narrow',sans-serif" font-size="20" letter-spacing="3" fill="#fff">
+    <textPath href="#topArc" startOffset="50%" text-anchor="middle">GEELONG CITY</textPath>
+  </text>
+  <text font-family="'Bebas Neue','Arial Narrow',sans-serif" font-size="13" letter-spacing="4" fill="#3fd0e6">
+    <textPath href="#botArc" startOffset="50%" text-anchor="middle">SHARKS · EST 1928</textPath>
+  </text>
+</svg>
