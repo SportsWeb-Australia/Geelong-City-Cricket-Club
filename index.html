@@ -1,63 +1,51 @@
 <!DOCTYPE html>
-<!-- ============================================================================
-     GEELONG CITY SHARKS — Design Launcher  (index.html)
-     Review hub: four homepage directions + the shared player profile page.
-     Each direction is a self-contained HTML file sharing assets/gcs-data.js,
-     assets/gcs-api.js and assets/logos/sharks-shield.png.
-     ========================================================================= -->
 <html lang="en-AU">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Geelong City Sharks — Design Directions</title>
+<title>Geelong City CC — Design Directions</title>
 <link rel="icon" href="assets/logos/sharks-shield.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.47.0/tabler-icons.min.css">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--navy:#00243c;--navy2:#003348;--navy3:#003c48;--aqua:#1f93a8;--aqua2:#15788c;--steel:#a8b4b4;--ink:#0a1722;--bg:#eef3f7;--card:#fff;--border:rgba(10,37,64,.10);--muted:#5d6f81}
-body{font-family:'DM Sans',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased}
+:root{--navy:#102b5e;--navy-d:#0b1e42;--navy-l:#2a4f96;--grey:#dfdddd;--border:#e2e0e0;--muted:#6b7280}
+body{font-family:'DM Sans',system-ui,sans-serif;background:#f4f4f5;color:#12182b;line-height:1.6}
 a{text-decoration:none;color:inherit}
-.wrap{width:min(1080px,92vw);margin:0 auto}
-header{background:linear-gradient(160deg,var(--navy),var(--navy3));color:#fff;padding:40px 0 46px;position:relative;overflow:hidden}
-header::after{content:"";position:absolute;right:-60px;top:-60px;width:320px;height:320px;background:radial-gradient(circle,rgba(34,195,230,.30),transparent 65%)}
-.hwrap{position:relative;z-index:1;display:flex;gap:18px;align-items:center;flex-wrap:wrap}
-.hwrap img{width:84px;height:84px}
-header h1{font-family:'Bebas Neue';font-size:clamp(36px,7vw,60px);letter-spacing:.6px;line-height:.92}
-header .tag{color:var(--aqua);letter-spacing:3px;text-transform:uppercase;font-size:12px;font-weight:600}
-header p{color:#bcd4e3;max-width:62ch;margin-top:10px}
-.note{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:12px;padding:12px 14px;margin-top:18px;color:#d4e6f1;font-size:13.5px;max-width:74ch;position:relative;z-index:1}
-.note b{color:#fff}
-main{padding:30px 0 50px}
-.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
-@media(max-width:760px){.grid{grid-template-columns:1fr}}
-.card{background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;box-shadow:0 1px 3px rgba(10,37,64,.08),0 10px 30px rgba(10,37,64,.07);transition:transform .18s,box-shadow .18s;display:flex;flex-direction:column}
-.card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(10,37,64,.18)}
-.thumb{height:140px;position:relative;display:flex;align-items:flex-end;padding:14px;color:#fff;overflow:hidden}
-.thumb .n{position:absolute;top:10px;right:14px;font-family:'Bebas Neue';font-size:54px;line-height:1;opacity:.22}
-.thumb h3{font-family:'Bebas Neue';font-size:30px;letter-spacing:.5px;line-height:.95;position:relative;z-index:1}
-.t1{background:linear-gradient(150deg,#0a2540,#15446e)}
-.t1::after{content:"";position:absolute;left:0;right:0;bottom:0;height:30px;background:var(--aqua);clip-path:polygon(0 60%,12% 30%,26% 60%,40% 28%,54% 60%,68% 30%,82% 60%,100% 30%,100% 100%,0 100%);opacity:.85}
-.t2{background:linear-gradient(150deg,#f4d9a8,#e9bd78);color:#3a2a12}
-.t3{background:linear-gradient(150deg,#06101c,#10283f)}
-.t3 h3{color:#fff}
-.t4{background:linear-gradient(150deg,#11243a,#1d4a3f)}
-.cbody{padding:16px 16px 18px;flex:1;display:flex;flex-direction:column}
-.cbody p{color:var(--muted);font-size:13.5px;margin-bottom:10px;flex:1}
-.tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
-.tags span{font-size:11px;background:rgba(34,195,230,.12);color:var(--aqua2);padding:3px 9px;border-radius:999px;font-weight:600}
-.open{display:inline-flex;gap:8px;align-items:center;justify-content:center;background:var(--navy);color:#fff;font-weight:700;padding:11px;border-radius:10px}
-.open:hover{background:var(--navy2)}
-.extra{margin-top:24px;background:var(--card);border:1px solid var(--border);border-radius:16px;padding:20px;display:flex;gap:16px;align-items:center;flex-wrap:wrap;box-shadow:0 1px 3px rgba(10,37,64,.08)}
-.extra .ic{width:56px;height:56px;border-radius:14px;background:linear-gradient(160deg,var(--navy2),var(--navy));color:#fff;display:flex;align-items:center;justify-content:center;font-size:26px;flex:0 0 auto}
-.extra h3{font-family:'Bebas Neue';font-size:24px;letter-spacing:.5px;color:var(--navy)}
-.extra p{color:var(--muted);font-size:13.5px}
-.extra a{margin-left:auto;background:var(--aqua);color:var(--navy);font-weight:700;padding:11px 18px;border-radius:10px;display:inline-flex;gap:8px;align-items:center}
-@media(max-width:600px){.extra a{margin-left:0;width:100%;justify-content:center}}
-footer{text-align:center;color:var(--muted);font-size:12.5px;padding:0 0 30px}
-.sw1{color:var(--aqua2);font-weight:700}
+.wrap{width:min(1120px,92vw);margin:0 auto}
+header{background:linear-gradient(160deg,var(--navy),var(--navy-d));color:#fff;padding:44px 0 48px;position:relative;overflow:hidden}
+header::after{content:'';position:absolute;right:-70px;top:-70px;width:340px;height:340px;background:radial-gradient(circle,rgba(74,114,192,.35),transparent 65%)}
+.hwrap{position:relative;z-index:1;display:flex;gap:20px;align-items:center;flex-wrap:wrap}
+.hwrap img{width:92px}
+.eyebrow{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#4a72c0;font-weight:700}
+h1{font-family:'Bebas Neue';font-size:clamp(36px,7vw,58px);letter-spacing:.8px;line-height:1}
+header p{color:rgba(255,255,255,.78);max-width:70ch;margin-top:10px}
+.pal{display:flex;gap:10px;margin-top:18px;flex-wrap:wrap;position:relative;z-index:1}
+.sw{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-radius:30px;padding:6px 14px 6px 6px;font-size:12px;color:rgba(255,255,255,.85)}
+.dot{width:22px;height:22px;border-radius:50%;border:1px solid rgba(255,255,255,.3)}
+.note{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);border-radius:10px;padding:12px 14px;margin-top:18px;color:rgba(255,255,255,.85);font-size:13.5px;max-width:78ch;position:relative;z-index:1}
+main{padding:34px 0 56px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+@media(max-width:860px){.grid{grid-template-columns:1fr}}
+.card{background:#fff;border:1px solid var(--border);border-radius:14px;overflow:hidden;display:flex;flex-direction:column;transition:transform .16s,box-shadow .16s}
+.card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(16,43,94,.16)}
+.thumb{height:130px;position:relative;display:flex;align-items:flex-end;padding:14px;color:#fff}
+.thumb .n{position:absolute;top:8px;right:14px;font-family:'Bebas Neue';font-size:50px;opacity:.22}
+.thumb h2{font-family:'Bebas Neue';font-size:27px;letter-spacing:.5px;position:relative;z-index:1}
+.t-a{background:linear-gradient(150deg,#102b5e,#0b1e42)}
+.t-b{background:linear-gradient(150deg,#16346e,#0b1e42);border-bottom:4px solid #2a4f96}
+.t-c{background:#102b5e}
+.t-c h2{font-family:Georgia,serif;font-weight:700;font-size:24px}
+.cbody{padding:16px;flex:1;display:flex;flex-direction:column}
+.cbody p{color:var(--muted);font-size:13.5px;flex:1;margin-bottom:12px}
+.open{display:block;text-align:center;background:var(--navy);color:#fff;font-weight:700;padding:11px;border-radius:8px;font-size:13.5px}
+.open:hover{background:var(--navy-l)}
+.pages{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:12px}
+.pages span{font-size:10.5px;background:var(--grey);color:var(--navy);padding:3px 8px;border-radius:20px;font-weight:600}
+.info{margin-top:26px;background:#fff;border:1px solid var(--border);border-radius:14px;padding:20px}
+.info h3{font-family:'Bebas Neue';font-size:22px;color:var(--navy);letter-spacing:.5px;margin-bottom:8px}
+.info p{color:var(--muted);font-size:14px;margin-bottom:8px}
+.info code{background:#f0f0f1;padding:2px 6px;border-radius:4px;font-size:12.5px}
 </style>
 </head>
 <body>
@@ -65,65 +53,57 @@ footer{text-align:center;color:var(--muted);font-size:12.5px;padding:0 0 30px}
   <div class="hwrap">
     <img src="assets/logos/sharks-shield.png" alt="Geelong City Sharks crest">
     <div>
-      <div class="tag">Geelong City Cricket Club · Est 1928</div>
-      <h1>Sharks — Four Design Directions</h1>
+      <div class="eyebrow">Geelong City Cricket Club · Est. 1928</div>
+      <h1>Three Design Directions</h1>
     </div>
   </div>
-  <p>Four complete, mobile-friendly homepage concepts for the Sharks, each in club navy &amp; white with an aqua accent. Every concept shares one content file and an API-ready stub for ladders, fixtures and results — so the winning look connects straight into the SportsWeb One database.</p>
-  <div class="note"><b>Heads-up:</b> real club logos are now wired in — the modern Sharks shield across the contemporary skins, the traditional <em>Facile Princeps</em> crest on Heritage, and the white crest on dark footers. Ladder / fixtures / results still show <b>sample data</b> via <code>gcs-api.js</code>, ready to flip to live with one switch.</div>
+  <p>Three complete, multi-page websites for the Sharks — each in the club's own colours, each referencing the RDCA and BHRDCA association builds, and each with a full <strong>Communications</strong> page. Content carried across from geelongcitycc.com.au.</p>
+  <div class="pal">
+    <span class="sw"><span class="dot" style="background:#102b5e"></span> #102b5e Navy</span>
+    <span class="sw"><span class="dot" style="background:#fff"></span> #ffffff White</span>
+    <span class="sw"><span class="dot" style="background:#dfdddd"></span> #dfdddd Grey</span>
+  </div>
+  <div class="note"><b>Two notes:</b> the grey you gave was <code>#dfddd</code> (5 chars — not valid hex); I've read it as <b>#dfdddd</b> — say the word and I'll swap it globally. And since the palette has no accent colour, links/hovers/active states use a <b>lighter tint of the same navy</b> rather than introducing a foreign hue.</div>
 </div></header>
 
 <main><div class="wrap">
   <div class="grid">
 
-    <a class="card" href="design1-deepwater.html">
-      <div class="thumb t1"><span class="n">01</span><h3>Deep Water</h3></div>
+    <a class="card" href="design-a/index.html">
+      <div class="thumb t-a"><span class="n">A</span><h2>Association</h2></div>
       <div class="cbody">
-        <p>Bold, dark-navy editorial. Big type, aqua highlights and a confident match strip — the flagship "premium club" look.</p>
-        <div class="tags"><span>Editorial</span><span>Dark hero</span><span>Bebas Neue</span></div>
-        <span class="open"><i class="ti ti-external-link"></i> Open design 1</span>
+        <p>Closest to the RDCA build — dark navy chrome, sticky nav with an active pill, eyebrow rules, dense card grid and a floating match strip. The safe, association-grade choice.</p>
+        <div class="pages"><span>Bebas Neue</span><span>DM Sans</span><span>Match strip</span></div>
+        <span class="open">Open Design A</span>
       </div>
     </a>
 
-    <a class="card" href="design2-clubhouse.html">
-      <div class="thumb t2"><span class="n">02</span><h3>Clubhouse</h3></div>
+    <a class="card" href="design-b/index.html">
+      <div class="thumb t-b"><span class="n">B</span><h2>Match Day</h2></div>
       <div class="cbody">
-        <p>Light, warm and family-friendly. Card-based and welcoming — leans into juniors, women's cricket and community.</p>
-        <div class="tags"><span>Light &amp; warm</span><span>Family</span><span>Fraunces serif</span></div>
-        <span class="open"><i class="ti ti-external-link"></i> Open design 2</span>
+        <p>Photo-led hero like the club's current site, a full-width dark scoreboard strip, heavy grey slab panels and condensed uppercase headings. The boldest, most match-focused option.</p>
+        <div class="pages"><span>Anton</span><span>Inter</span><span>Scoreboard</span></div>
+        <span class="open">Open Design B</span>
       </div>
     </a>
 
-    <a class="card" href="design3-matchday.html">
-      <div class="thumb t3"><span class="n">03</span><h3>Match Day</h3></div>
+    <a class="card" href="design-c/index.html">
+      <div class="thumb t-c"><span class="n">C</span><h2>Heritage</h2></div>
       <div class="cbody">
-        <p>Broadcast scoreboard energy. Live ticker, scoreboard hero and a ladder/fixtures dual panel with mono numerals.</p>
-        <div class="tags"><span>Scoreboard</span><span>Live ticker</span><span>Anton + mono</span></div>
-        <span class="open"><i class="ti ti-external-link"></i> Open design 3</span>
-      </div>
-    </a>
-
-    <a class="card" href="design4-heritage.html">
-      <div class="thumb t4"><span class="n">04</span><h3>Heritage</h3></div>
-      <div class="cbody">
-        <p>Classic "since 1928". Crest-forward, navy-on-sand with a gold accent and a club timeline — tradition front and centre.</p>
-        <div class="tags"><span>Classic</span><span>Crest-led</span><span>Playfair</span></div>
-        <span class="open"><i class="ti ti-external-link"></i> Open design 4</span>
+        <p>Crest-forward and classic — the traditional <em>Facile Princeps</em> crest leads the hero, with Playfair serif headings, restrained rules and navy on warm grey. Leans into 1928.</p>
+        <div class="pages"><span>Playfair</span><span>Source Sans</span><span>Crest-led</span></div>
+        <span class="open">Open Design C</span>
       </div>
     </a>
 
   </div>
 
-  <div class="extra">
-    <div class="ic"><i class="ti ti-id-badge-2"></i></div>
-    <div>
-      <h3>Player Profile Page</h3>
-      <p>Shared across all four designs — flip trading-card with season stats, full bio and a squad picker. Six sample players included.</p>
-    </div>
-    <a href="player.html"><i class="ti ti-user"></i> Open player page</a>
+  <div class="info">
+    <h3>How these are built</h3>
+    <p>All three share <strong>one content file</strong> (<code>assets/gc-data.js</code>) and <strong>one site script</strong> (<code>assets/gc-site.js</code>) that injects the nav, footer and every data-driven section. The only thing that differs between designs is <code>theme.css</code> — which is exactly the skin model: same content, same markup, different look.</p>
+    <p><strong>Ten pages each:</strong> Home · About Us · Teams · Cricket Blast · Match Centre · Registration · Communications · News · Sponsors · Contact.</p>
+    <p><strong>Sample data:</strong> ladder, fixtures, results and news are placeholders (clearly flagged in the UI) and swap to live SportsWeb One / PlayHQ feeds with no page changes. Everything else — teams, contacts, sponsors, registration links, Cricket Blast — is real, carried across from the club's site.</p>
   </div>
 </div></main>
-
-<footer>Built on Carson's RDCA template · Powered by <span class="sw1">SportsWeb One</span></footer>
 </body>
 </html>
