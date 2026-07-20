@@ -428,8 +428,8 @@
   /* ======================= COMMITTEE ===================================== */
   if ($('gcCommitteeIntro')) $('gcCommitteeIntro').textContent = D.committeeIntro;
   if ($('gcCoachesIntro')) $('gcCoachesIntro').textContent = D.coachesIntro;
-  if ($('gcContacts')) {
-    $('gcContacts').innerHTML = D.contacts.map(function (c) {
+  function personCards(list) {
+    return list.map(function (c) {
       var av = c.photo
         ? '<img class="avatar" src="assets/img/' + c.photo + '" alt="' + esc(c.name) + '" loading="lazy">'
         : '<div class="avatar-ph">' + initials(c.name) + '</div>';
@@ -438,6 +438,14 @@
         '<h3 style="font-family:\'Bebas Neue\';font-size:22px;color:var(--navy);letter-spacing:.4px;margin:4px 0 8px">' + esc(c.name) + '</h3>' +
         '<a href="mailto:' + c.email + '" style="font-size:12.5px;color:var(--muted);display:inline-flex;gap:5px;align-items:center"><i class="ti ti-mail"></i> ' + esc(c.email) + '</a></div>';
     }).join('');
+  }
+  if ($('gcContacts'))     $('gcContacts').innerHTML     = personCards(D.contacts);
+  if ($('gcCommittee'))    $('gcCommittee').innerHTML    = personCards(D.committee);
+  if ($('gcCoordinators')) $('gcCoordinators').innerHTML = personCards(D.coordinators);
+  if ($('gcCoordinatorsMini')) {
+    $('gcCoordinatorsMini').innerHTML = '<dl class="facts">' + D.coordinators.map(function (c) {
+      return '<div><dt>' + esc(c.role) + '</dt><dd>' + esc(c.name) + '</dd></div>';
+    }).join('') + '</dl>';
   }
 
   /* ======================= COMMUNICATIONS ================================ */

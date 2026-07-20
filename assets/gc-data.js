@@ -156,14 +156,14 @@ window.GCC = {
 
   /* ---- SAMPLE LADDER / FIXTURES / RESULTS -------------------------------- */
   ladder: { sample:true, grade:"GCA — Senior Men (illustrative)", rows:[
-    { pos:1, team:"Bell Park",     P:10, W:8, L:2, D:0, pts:34 },
-    { pos:2, team:"East Belmont",  P:10, W:7, L:2, D:1, pts:31 },
-    { pos:3, team:"Geelong City",  P:10, W:7, L:3, D:0, pts:30, us:true },
-    { pos:4, team:"Highton",       P:10, W:6, L:4, D:0, pts:26 },
-    { pos:5, team:"Lara",          P:10, W:5, L:5, D:0, pts:22 },
-    { pos:6, team:"Marshall",      P:10, W:4, L:6, D:0, pts:18 },
-    { pos:7, team:"Newcomb Power", P:10, W:3, L:7, D:0, pts:14 },
-    { pos:8, team:"Leopold",       P:10, W:1, L:9, D:0, pts:6  }
+    { pos:1, team:"Bell Park",     P:10, W:8, L:2, D:0, pts:34, form:["W","W","W","L","W"] },
+    { pos:2, team:"East Belmont",  P:10, W:7, L:2, D:1, pts:31, form:["W","L","W","W","L"] },
+    { pos:3, team:"Geelong City",  P:10, W:7, L:3, D:0, pts:30, us:true, form:["W","W","L","W","W"] },
+    { pos:4, team:"Highton",       P:10, W:6, L:4, D:0, pts:26, form:["L","W","W","W","L"] },
+    { pos:5, team:"Lara",          P:10, W:5, L:5, D:0, pts:22, form:["W","L","L","W","W"] },
+    { pos:6, team:"Marshall",      P:10, W:4, L:6, D:0, pts:18, form:["L","L","W","L","W"] },
+    { pos:7, team:"Newcomb Power", P:10, W:3, L:7, D:0, pts:14, form:["L","W","L","L","L"] },
+    { pos:8, team:"Leopold",       P:10, W:1, L:9, D:0, pts:6,  form:["L","L","L","W","L"] }
   ]},
   fixtures: { sample:true, rows:[
     { round:"Round 11", date:"Sat 11 Oct", time:"12:30pm", home:"Geelong City", away:"Highton",      venue:"Richmond Crescent" },
@@ -245,12 +245,26 @@ window.GCC = {
   /* ---- COMMITTEE (structure real; individual names to be supplied) ------- */
   committeeIntro:"We're proud to introduce the committed and hardworking Geelong City Cricket Club committee members. This dedicated team ensures our club operates smoothly, fosters a positive community spirit, and upholds our traditions while driving us toward future successes.",
   coachesIntro:"We're excited to introduce the dedicated coaching and co-ordinator team at Geelong City Cricket Club, each bringing a wealth of knowledge, skill, and passion to help our players excel on and off the field.",
-  contacts: [
-    { role:"President",           name:"Scott Lindsay",  email:"info@geelongcitycc.com.au", photo:"" },
-    { role:"Senior Men",          name:"Sam Cust",       email:"info@geelongcitycc.com.au", photo:"" },
-    { role:"Senior Women",        name:"Melissa Rolfe",  email:"info@geelongcitycc.com.au", photo:"" },
-    { role:"Junior Coordinator",  name:"Trevor Elliot",  email:"info@geelongcitycc.com.au", photo:"" }
+  /* Executive committee — updated following the change of leadership.
+     Club email is the published contact for every role.                      */
+  committee: [
+    { role:"President",      name:"Chris Bambury", email:"info@geelongcitycc.com.au", photo:"" },
+    { role:"Vice President", name:"Sam Cust",      email:"info@geelongcitycc.com.au", photo:"" },
+    { role:"Secretary",      name:"Hope Smith",    email:"info@geelongcitycc.com.au", photo:"" },
+    { role:"Treasurer",      name:"Jack Driver",   email:"info@geelongcitycc.com.au", photo:"" }
   ],
+
+  /* Cricket coordinators — who to ask about playing in each program.
+     NOTE: Sam Cust is listed as both Vice President and Senior Men
+     coordinator; confirm with the club whether he still holds both.          */
+  coordinators: [
+    { role:"Senior Men",         name:"Sam Cust",      email:"info@geelongcitycc.com.au", photo:"" },
+    { role:"Senior Women",       name:"Melissa Rolfe", email:"info@geelongcitycc.com.au", photo:"" },
+    { role:"Junior Coordinator", name:"Trevor Elliot", email:"info@geelongcitycc.com.au", photo:"" }
+  ],
+
+  /* combined list used by the generic contact cards */
+  get contacts() { return this.committee.concat(this.coordinators); },
 
   /* ---- REGISTRATION ------------------------------------------------------ */
   register: [
@@ -283,6 +297,120 @@ window.GCC = {
     { name:"Cricket Australia",           url:"https://www.cricket.com.au/", logo:"" },
     { name:"Good Sports",                 url:"https://goodsports.com.au/", logo:"" },
     { name:"SportsWeb Australia",         url:"https://sportsweb.com.au", logo:"" }
+  ],
+
+  /* ==========================================================================
+     RICH HOME PAGE DATA  (RDCA-style match centre)
+     All SAMPLE — this is the shape the SportsWeb One / PlayHQ API will fill.
+     ========================================================================== */
+
+  /* live / most-recent match card beside the hero */
+  live: {
+    sample:true, state:"LIVE NOW",
+    comp:"GCA Division 2", round:"Round 14", venue:"Richmond Crescent",
+    home:{ code:"GCC", name:"Geelong City", score:"4/187", sub:"Batting", overs:"42.2 ov", us:true },
+    away:{ code:"HIG", name:"Highton",      score:"223",   sub:"Bowled 223", overs:"" },
+    tiles:[
+      { lbl:"Partnership",  big:"J. Marsh 68*",  sub:"D. Okafor 34* · 72 runs" },
+      { lbl:"Required",     big:"37 off 48",     sub:"RRR 4.63", hot:true },
+      { lbl:"Best Bowler",  big:"S. Cust",       sub:"2/34 (9 ov)" },
+      { lbl:"Last Wicket",  big:"T. Elliot b Cust", sub:"31 · Over 38.4" }
+    ],
+    lastSix:[ {v:"1"},{v:"4",cls:"four"},{v:"6",cls:"six"},{v:"0"},{v:"1"},{v:"2"} ],
+    crr:"CRR 4.41"
+  },
+
+  /* hero stat bar */
+  heroStats:[
+    { icon:"ti-shield", val:"6",    lbl:"Senior Teams" },
+    { icon:"ti-users",  val:"7",    lbl:"Junior Teams" },
+    { icon:"ti-trophy", val:"GCA",  lbl:"Association" },
+    { icon:"ti-calendar-star", val:"97+", lbl:"Years" }
+  ],
+
+  /* live-scores ticker across the top */
+  liveTicker:[
+    { badge:"1ST XI",  live:true,  txt:"Geelong City 4/187", extra:"42.2 ov", vs:"Highton 223", note:"Geelong City need 37 runs off 48 balls" },
+    { badge:"2ND XI",  live:true,  txt:"Geelong City 3/96",  extra:"28.0 ov", vs:"Lara 142",    note:"Need 47 to win" },
+    { badge:"WOMEN'S", live:false, txt:"Geelong City 4/146", extra:"",        vs:"Newcomb 142", note:"Won by 6 wickets" },
+    { badge:"U17",     live:false, txt:"Round 15 v Bell Park", extra:"",      vs:"Sat 25 Oct, 12:30pm", note:"Richmond Crescent" }
+  ],
+
+  /* announced team line-up */
+  lineup: {
+    sample:true, team:"Geelong City — 1st XI", announced:true,
+    meta:"GCA Division 2 · Round 15 · Sat 25 Oct · Richmond Crescent",
+    players:[
+      { n:1,  name:"J. Marsh",   badge:"C"  }, { n:2,  name:"A. Robinson", badge:"VC" },
+      { n:3,  name:"D. Okafor"  },             { n:4,  name:"C. Williams" },
+      { n:5,  name:"S. Cust"    },             { n:6,  name:"R. Evans",    badge:"WK" },
+      { n:7,  name:"P. Davis"   },             { n:8,  name:"S. Kumar"    },
+      { n:9,  name:"M. Jones"   },             { n:10, name:"B. Taylor"   },
+      { n:11, name:"G. Morris"  },             { n:12, name:"H. Patel",    badge:"12th" }
+    ]
+  },
+
+  /* top performers */
+  performers: {
+    sample:true, season:"2025/26 · GCA Division 2",
+    runs:[
+      { rank:1, name:"J. Marsh",   team:"1st XI",  val:"512", avg:"avg 51.2" },
+      { rank:2, name:"A. Robinson",team:"1st XI",  val:"438", avg:"avg 43.8" },
+      { rank:3, name:"P. Rolfe",   team:"Women's", val:"298", avg:"avg 33.1" },
+      { rank:4, name:"C. Williams",team:"2nd XI",  val:"276", avg:"avg 30.6" },
+      { rank:5, name:"E. Nguyen",  team:"Women's", val:"241", avg:"avg 30.1" }
+    ],
+    wickets:[
+      { rank:1, name:"D. Okafor",  team:"1st XI",  val:"29", avg:"avg 13.1" },
+      { rank:2, name:"P. Rolfe",   team:"Women's", val:"18", avg:"avg 14.6" },
+      { rank:3, name:"S. Cust",    team:"1st XI",  val:"16", avg:"avg 17.2" },
+      { rank:4, name:"S. Kumar",   team:"2nd XI",  val:"14", avg:"avg 18.9" },
+      { rank:5, name:"S. Kaur",    team:"U15 Girls",val:"11", avg:"avg 11.8" }
+    ]
+  },
+
+  /* player spotlight */
+  spotlight: {
+    sample:true, name:"Jack Marsh", team:"1st XI · Opening Batter", badge:"Season Top Scorer",
+    stats:[ {v:"512",lbl:"Runs"}, {v:"51.2",lbl:"Avg"}, {v:"1",lbl:"100s"} ],
+    progress:{ done:14, total:18, label:"Rd 14 of 18" }
+  },
+
+  /* upcoming fixtures, grouped */
+  upcoming: {
+    sample:true,
+    groups:[
+      { key:"1st XI", rows:[
+        { d:"25", day:"SAT", match:"Geelong City vs Bell Park", meta:"GCA Div 2 · Rd 15 · Richmond Crescent", time:"12:30 PM" },
+        { d:"1",  day:"SAT", match:"Marshall vs Geelong City",  meta:"GCA Div 2 · Rd 16 · Marshall Reserve",  time:"12:30 PM" } ]},
+      { key:"Women's", rows:[
+        { d:"26", day:"SUN", match:"Geelong City vs Torquay",   meta:"GCA Women's · Rd 9 · Richmond Crescent", time:"10:00 AM" },
+        { d:"2",  day:"SUN", match:"Barwon vs Geelong City",    meta:"GCA Women's · Rd 10 · Barwon Reserve",   time:"10:00 AM" } ]},
+      { key:"Juniors", rows:[
+        { d:"24", day:"FRI", match:"U17 vs Newcomb Power",      meta:"GCA Juniors · Rd 12 · Eastern Gardens",  time:"5:00 PM" },
+        { d:"25", day:"SAT", match:"U15 Girls vs Leopold",      meta:"GCA Junior Girls · Rd 9 · Eastern Gardens", time:"9:00 AM" } ]}
+    ]
+  },
+
+  /* community notices */
+  notices: [
+    { icon:"ti-calendar-event", txt:"Presentation Night — Saturday 28 March at the club-rooms" },
+    { icon:"ti-cloud-rain",     txt:"Ground conditions — check socials before travelling on wet days" },
+    { icon:"ti-award",          txt:"Club award nominations open until the end of February" },
+    { icon:"ti-shield-check",   txt:"Child Safety policy updated — all volunteers to review" }
+  ],
+
+  /* featured news */
+  featured: {
+    sample:true, tag:"Match Report", meta:"GCA Division 2 · Round 14 · 3 hours ago · By Geelong City CC",
+    title:"Sharks edge East Belmont in thriller as Marsh steers chase with unbeaten 89"
+  },
+
+  /* sponsor tier cards (RDCA-style coloured partner cards) */
+  partnerCards: [
+    { tier:"Major Partner",       name:"QA Electrical",      blurb:"Proudly powering the Sharks. Domestic and commercial electrical across Geelong.", cta:"Visit site",   url:"https://www.qaelectrical.com.au/", theme:"a" },
+    { tier:"Hospitality Partner", name:"Elephant & Castle",  blurb:"Where the Sharks gather after play — great food, cold drinks and sport on every screen.", cta:"Book a table", url:"https://elephantandcastle.com.au/", theme:"b" },
+    { tier:"Community Partner",   name:"Kings Funerals",     blurb:"Supporting Geelong families for generations, and proud supporters of the Sharks.", cta:"Learn more",  url:"", theme:"c" }
   ],
 
   /* ---- DOCUMENTS --------------------------------------------------------- */

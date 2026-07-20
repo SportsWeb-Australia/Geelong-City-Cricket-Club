@@ -116,6 +116,20 @@ refresh. Slots exist for the hero, About panel, section banners, news covers,
 sponsor logos and committee headshots. A labelled sample hero is included so
 you can see the treatment before the real photo arrives.
 
+## Committee (updated)
+The site reflects the change of leadership:
+
+**Executive** — President Chris Bambury · Vice President Sam Cust ·
+Secretary Hope Smith · Treasurer Jack Driver
+
+**Cricket coordinators** — Senior Men Sam Cust · Senior Women Melissa Rolfe ·
+Junior Coordinator Trevor Elliot
+
+These are two separate lists in `gc-data.js` (`committee` and `coordinators`),
+so the Committee page shows both, the About page shows the executive, and the
+Registration sidebar shows only the coordinators — i.e. who to ask about
+actually playing.
+
 ## To finish
 1. **Photos.** The club site lazy-loads its images, so their URLs aren't exposed
    in the page source and couldn't be pulled automatically. Drop the team photo,
@@ -125,6 +139,5 @@ you can see the treatment before the real photo arrives.
 3. **Committee list** — the club page lists roles but the names sit inside
    images; ask the club for the current roster.
 4. **Contact form** → point at the club inbox.
-5. **Check the President name.** The club's sponsors section names *Damien
-   Barber* as the sponsorship contact while *Scott Lindsay* is listed as
-   President elsewhere. This build uses Scott Lindsay — worth confirming.
+5. **Confirm Sam Cust's roles.** He is listed as both Vice President and Senior
+   Men coordinator — common in community clubs, but worth confirming.

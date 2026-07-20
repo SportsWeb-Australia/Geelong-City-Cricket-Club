@@ -5,11 +5,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <meta name="theme-color" content="#102b5e">
-<meta name="description" content="Geelong City Cricket Club — Home of the Sharks. Founded 1928, proud members of the Geelong Cricket Association.">
+<meta name="description" content="Geelong City Cricket Club — Home of the Sharks. Live scores, fixtures, ladders and club news.">
 <title>Home — Geelong City Cricket Club</title>
 <link rel="icon" href="assets/logos/sharks-shield.png">
 <meta property="og:title" content="Home — Geelong City Cricket Club">
-<meta property="og:description" content="Geelong City Cricket Club — Home of the Sharks. Founded 1928, proud members of the Geelong Cricket Association.">
+<meta property="og:description" content="Geelong City Cricket Club — Home of the Sharks. Live scores, fixtures, ladders and club news.">
 <meta property="og:image" content="assets/logos/sharks-shield.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,41 +17,84 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
 <link rel="stylesheet" href="assets/gc-shared.css">
 <link rel="stylesheet" href="assets/gc-theme.css">
+<link rel="stylesheet" href="assets/gc-home.css">
 </head>
 <body class="accent-teal" data-page="index">
 <div id="gcTopbar"></div>
 <div id="gcMob"></div>
 <nav id="gcNav"></nav>
-<div id="gcTicker"></div>
-<header class="hero" id="gcHero"></header>
+<div id="lsBar"></div>
+<header class="rhero" id="rHero"></header>
 
-<section class="strip"><div class="wrap"><div class="strip-grid">
-  <div class="scard" id="gcNext"></div>
-  <div class="scard" id="gcLast"></div>
-  <div class="scard" id="gcMiniLadder"></div>
+<section class="sec"><div class="wrap"><div class="hgrid">
+
+  <div style="display:flex;flex-direction:column;gap:24px">
+
+    <div class="feat" id="featNews"></div>
+
+    <div class="grid g3" id="gcNewsHome"></div>
+
+    <div class="hub">
+      <div class="hub-hd">
+        <div><div class="eyebrow">2025/26 Season</div><h2 class="s-hed" style="margin:0">Competition Hub</h2></div>
+        <a class="view-all" href="match-centre.html">Full Match Centre <i class="ti ti-arrow-right"></i></a>
+      </div>
+      <div class="hub-tabs">
+        <button class="hub-tab on" data-tab="lad"><i class="ti ti-list-numbers"></i> Ladder</button>
+        <button class="hub-tab" data-tab="fix"><i class="ti ti-calendar"></i> Fixtures</button>
+        <button class="hub-tab" data-tab="res"><i class="ti ti-clipboard-check"></i> Results</button>
+      </div>
+      <div class="hub-pane on" data-pane="lad" id="hubLadder"></div>
+      <div class="hub-pane" data-pane="fix" id="hubFixtures"></div>
+      <div class="hub-pane" data-pane="res" id="hubResults"></div>
+    </div>
+
+    <div class="lineup" id="lineUp"></div>
+
+    <div class="panel">
+      <div class="panel-hd">
+        <div><div class="eyebrow" id="perfSeason"></div><h2 class="s-hed" style="margin:0">Top Performers</h2></div>
+        <a class="view-all" href="match-centre.html">Full stats <i class="ti ti-arrow-right"></i></a>
+      </div>
+      <div class="perf">
+        <div class="runs"><h3><i class="ti ti-trending-up rn"></i> Leading Run Scorers</h3><div id="perfRuns"></div></div>
+        <div class="wkts"><h3><i class="ti ti-wind wk"></i> Leading Wicket Takers</h3><div id="perfWkts"></div></div>
+      </div>
+    </div>
+
+  </div>
+
+  <aside class="side-stack">
+
+    <div class="panel">
+      <div class="panel-hd"><div><div class="eyebrow">This weekend</div><h3>Upcoming Fixtures</h3></div></div>
+      <div class="hub-tabs" style="padding:0;margin-top:0" id="upTabs"></div>
+      <div id="upPanes"></div>
+      <a class="view-all" style="margin-top:10px" href="match-centre.html">All fixtures <i class="ti ti-arrow-right"></i></a>
+    </div>
+
+    <div class="spot" id="spotlight"></div>
+
+    <div class="panel notices">
+      <div class="panel-hd"><h3><i class="ti ti-bell"></i> Club Notices</h3></div>
+      <div id="notices"></div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-hd"><h3>Quick Links</h3></div>
+      <a class="btn btn-accent" style="width:100%;justify-content:center;margin-bottom:8px" href="registration.html"><i class="ti ti-user-plus"></i> Register to play</a>
+      <a class="btn btn-outline" style="width:100%;justify-content:center;margin-bottom:8px" href="communications.html"><i class="ti ti-broadcast"></i> Communications</a>
+      <a class="btn btn-outline" style="width:100%;justify-content:center" href="cricket-blast.html"><i class="ti ti-mood-smile"></i> Cricket Blast</a>
+    </div>
+
+  </aside>
+
 </div></div></section>
 
 <section class="sec sec-dark"><div class="wrap">
   <div class="sec-hdr"><div><div class="eyebrow">Our cricket</div><h2 class="s-hed">Teams &amp; Programs</h2></div>
-    <a class="view-all" href="registration.html">Register <i class="ti ti-arrow-right"></i></a></div>
+    <a class="view-all" href="seniors.html">All teams <i class="ti ti-arrow-right"></i></a></div>
   <div class="grid g4" id="gcPillars"></div>
-</div></section>
-
-<section class="sec sec-alt"><div class="wrap">
-  <div class="split">
-    <div>
-      <div class="eyebrow">About the club</div>
-      <h2 class="s-hed" id="gcAboutHed"></h2>
-      <div id="gcAboutBody"></div>
-      <a class="btn btn-outline" style="margin-top:16px" href="about.html">More about us <i class="ti ti-arrow-right"></i></a>
-    </div>
-    <aside class="side" id="gcFacts"></aside>
-  </div>
-</div></section>
-
-<section class="sec"><div class="wrap">
-  <div class="eyebrow">By the numbers</div><h2 class="s-hed">The club today</h2>
-  <div class="statgrid" id="gcStats"></div>
 </div></section>
 
 <section class="sec blast-band"><div class="wrap"><div class="glass blast-inner">
@@ -63,19 +106,25 @@
 </div></div></section>
 
 <section class="sec"><div class="wrap">
-  <div class="sec-hdr"><div><div class="eyebrow">Latest</div><h2 class="s-hed">Club News</h2></div>
-    <a class="view-all" href="news.html">All news <i class="ti ti-arrow-right"></i></a></div>
-  <div class="grid g3" id="gcNewsHome"></div>
+  <div class="sec-hdr"><div><div class="eyebrow">Thank you</div><h2 class="s-hed">Our Partners</h2></div>
+    <a class="view-all" href="sponsors.html">All sponsors <i class="ti ti-arrow-right"></i></a></div>
+  <div class="pcards" id="partnerCards"></div>
+  <div class="sp-rail" style="margin-top:18px" id="gcSponsorRail"></div>
 </div></section>
 
 <section class="sec sec-alt"><div class="wrap">
-  <div class="sec-hdr"><div><div class="eyebrow">Thank you</div><h2 class="s-hed">Our Sponsors</h2></div>
-    <a class="view-all" href="sponsors.html">All sponsors <i class="ti ti-arrow-right"></i></a></div>
-  <div class="sp-rail" id="gcSponsorRail"></div>
+  <div class="split">
+    <div><div class="eyebrow">About the club</div><h2 class="s-hed" id="gcAboutHed"></h2><div id="gcAboutBody"></div>
+      <a class="btn btn-outline" style="margin-top:16px" href="about.html">More about us <i class="ti ti-arrow-right"></i></a></div>
+    <aside class="side" id="gcFacts"></aside>
+  </div>
 </div></section>
+
+<nav id="botBar"></nav>
 <footer id="gcFooter"></footer>
 <script src="assets/gc-data.js"></script>
 <script src="assets/gc-site.js"></script>
+<script src="assets/gc-home.js"></script>
 <script src="assets/gc-switch.js"></script><!-- REVIEW ONLY: delete before go-live -->
 </body>
 </html>

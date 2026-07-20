@@ -23,6 +23,7 @@ def head(key, title, desc):
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
 <link rel="stylesheet" href="assets/gc-shared.css">
 <link rel="stylesheet" href="assets/gc-theme.css">
+<link rel="stylesheet" href="assets/gc-home.css">
 </head>
 <body class="accent-teal" data-page="{key}">
 <div id="gcTopbar"></div>
@@ -33,6 +34,7 @@ def head(key, title, desc):
 TAIL = """<footer id="gcFooter"></footer>
 <script src="assets/gc-data.js"></script>
 <script src="assets/gc-site.js"></script>
+<script src="assets/gc-home.js"></script>
 <script src="assets/gc-switch.js"></script><!-- REVIEW ONLY: delete before go-live -->
 </body>
 </html>
@@ -49,7 +51,7 @@ def phead(title, sub, crumb):
 # ---------------------------------------------------------------- pages
 PAGES = {}
 
-PAGES["index"] = ("Home",
+PAGES["classic"] = ("Home — Classic layout",
  "Geelong City Cricket Club — Home of the Sharks. Founded 1928, proud members of the Geelong Cricket Association.",
 """<div id="gcTicker"></div>
 <header class="hero" id="gcHero"></header>
@@ -121,8 +123,8 @@ PAGES["about"] = ("About Us",
 </div></section>
 
 <section class="sec"><div class="wrap">
-  <div class="eyebrow">Who to talk to</div><h2 class="s-hed">Key Contacts</h2>
-  <div class="grid g4" id="gcContacts"></div>
+  <div class="eyebrow">Who to talk to</div><h2 class="s-hed">Club Committee</h2>
+  <div class="grid g4" id="gcCommittee"></div>
 </div></section>
 
 <section class="sec sec-alt"><div class="wrap"><div class="notice">
@@ -220,7 +222,7 @@ PAGES["registration"] = ("Registration",
     <div class="hero-cta">
       <a class="btn btn-accent" href="contact.html"><i class="ti ti-mail"></i> Contact the club</a>
       <a class="btn btn-outline" href="seniors.html">Browse teams</a></div></div>
-  <aside class="side"><h3>Who to ask</h3><div class="grid" id="gcContacts" style="gap:10px"></div></aside>
+  <aside class="side"><h3>Who to ask</h3><div id="gcCoordinatorsMini"></div></aside>
 </div></div></section>
 """)
 
@@ -243,19 +245,23 @@ PAGES["committee"] = ("Committee & Coaches",
  phead("Committee &amp; Coaches","Meet the dedicated committee and coaching team leading the club.","Committee") +
 """<section class="sec"><div class="wrap">
   <div id="gcCommitteeBanner"></div>
-  <div class="eyebrow">Our coaches</div><h2 class="s-hed">Coaching &amp; Coordinators</h2>
-  <p class="s-sub" id="gcCoachesIntro"></p>
-  <div class="grid g4" id="gcContacts"></div>
+  <div class="eyebrow">2025/26 Executive</div><h2 class="s-hed">Club Committee</h2>
+  <p class="s-sub" id="gcCommitteeIntro"></p>
+  <div class="grid g4" id="gcCommittee"></div>
 </div></section>
 
 <section class="sec sec-alt"><div class="wrap">
-  <div class="eyebrow">Our committee</div><h2 class="s-hed">Club Committee</h2>
-  <p class="s-sub" id="gcCommitteeIntro"></p>
-  <div class="notice"><i class="ti ti-users"></i>
-    <div><h3>Full committee list</h3>
-    <p>The complete committee roster &mdash; including photos and role descriptions &mdash; will be published here. Send the club the current list and we'll load it in.</p>
-    <a class="btn btn-outline btn-sm" href="contact.html">Contact the club <i class="ti ti-arrow-right"></i></a></div></div>
+  <div class="eyebrow">Our coaches</div><h2 class="s-hed">Coaching &amp; Coordinators</h2>
+  <p class="s-sub" id="gcCoachesIntro"></p>
+  <div class="grid g4" id="gcCoordinators"></div>
 </div></section>
+
+<section class="sec"><div class="wrap"><div class="notice">
+  <i class="ti ti-users"></i>
+  <div><h3>General committee &amp; volunteers</h3>
+  <p>Beyond the executive, the club runs on a large group of volunteers &mdash; team managers, scorers, canteen, ground crew and working-bee regulars. If you'd like to help out in any capacity, we'd love to hear from you.</p>
+  <a class="btn btn-outline btn-sm" href="contact.html">Get involved <i class="ti ti-arrow-right"></i></a></div>
+</div></div></section>
 """)
 
 PAGES["sponsors"] = ("Sponsors",
@@ -321,7 +327,8 @@ PAGES["child-safety"] = ("Child Safety",
   <aside class="side"><h3>Who to contact</h3>
     <dl class="facts">
       <div><dt>Junior Coordinator</dt><dd>Trevor Elliot</dd></div>
-      <div><dt>President</dt><dd>Scott Lindsay</dd></div>
+      <div><dt>President</dt><dd>Chris Bambury</dd></div>
+      <div><dt>Secretary</dt><dd>Hope Smith</dd></div>
       <div><dt>Club email</dt><dd><a href="mailto:info@geelongcitycc.com.au">info@geelongcitycc.com.au</a></dd></div>
     </dl>
   </aside>
@@ -366,7 +373,7 @@ PAGES["contact"] = ("Contact Us",
       <div><dt>Address</dt><dd>Richmond Crescent,<br>Geelong Victoria, 3220</dd></div>
       <div><dt>Map</dt><dd><a href="https://tinyurl.com/28ptesue" target="_blank" rel="noopener">Open in Maps</a></dd></div>
       <div><dt>Email</dt><dd><a href="mailto:info@geelongcitycc.com.au">info@geelongcitycc.com.au</a></dd></div>
-      <div><dt>President</dt><dd>Scott Lindsay</dd></div>
+      <div><dt>President</dt><dd>Chris Bambury</dd></div>
       <div><dt>Facebook</dt><dd><a href="https://www.facebook.com/geelongcitycricketclub" target="_blank" rel="noopener">Geelong City CC</a></dd></div>
       <div><dt>Instagram</dt><dd><a href="https://www.instagram.com/geelongcitycc/" target="_blank" rel="noopener">@geelongcitycc</a></dd></div>
     </dl>
@@ -377,6 +384,109 @@ PAGES["contact"] = ("Contact Us",
   <div class="eyebrow">Who to talk to</div><h2 class="s-hed">Key Contacts</h2>
   <div class="grid g4" id="gcContacts"></div>
 </div></section>
+""")
+
+
+PAGES["index"] = ("Home",
+ "Geelong City Cricket Club — Home of the Sharks. Live scores, fixtures, ladders and club news.",
+"""<div id="lsBar"></div>
+<header class="rhero" id="rHero"></header>
+
+<section class="sec"><div class="wrap"><div class="hgrid">
+
+  <div style="display:flex;flex-direction:column;gap:24px">
+
+    <div class="feat" id="featNews"></div>
+
+    <div class="grid g3" id="gcNewsHome"></div>
+
+    <div class="hub">
+      <div class="hub-hd">
+        <div><div class="eyebrow">2025/26 Season</div><h2 class="s-hed" style="margin:0">Competition Hub</h2></div>
+        <a class="view-all" href="match-centre.html">Full Match Centre <i class="ti ti-arrow-right"></i></a>
+      </div>
+      <div class="hub-tabs">
+        <button class="hub-tab on" data-tab="lad"><i class="ti ti-list-numbers"></i> Ladder</button>
+        <button class="hub-tab" data-tab="fix"><i class="ti ti-calendar"></i> Fixtures</button>
+        <button class="hub-tab" data-tab="res"><i class="ti ti-clipboard-check"></i> Results</button>
+      </div>
+      <div class="hub-pane on" data-pane="lad" id="hubLadder"></div>
+      <div class="hub-pane" data-pane="fix" id="hubFixtures"></div>
+      <div class="hub-pane" data-pane="res" id="hubResults"></div>
+    </div>
+
+    <div class="lineup" id="lineUp"></div>
+
+    <div class="panel">
+      <div class="panel-hd">
+        <div><div class="eyebrow" id="perfSeason"></div><h2 class="s-hed" style="margin:0">Top Performers</h2></div>
+        <a class="view-all" href="match-centre.html">Full stats <i class="ti ti-arrow-right"></i></a>
+      </div>
+      <div class="perf">
+        <div class="runs"><h3><i class="ti ti-trending-up rn"></i> Leading Run Scorers</h3><div id="perfRuns"></div></div>
+        <div class="wkts"><h3><i class="ti ti-wind wk"></i> Leading Wicket Takers</h3><div id="perfWkts"></div></div>
+      </div>
+    </div>
+
+  </div>
+
+  <aside class="side-stack">
+
+    <div class="panel">
+      <div class="panel-hd"><div><div class="eyebrow">This weekend</div><h3>Upcoming Fixtures</h3></div></div>
+      <div class="hub-tabs" style="padding:0;margin-top:0" id="upTabs"></div>
+      <div id="upPanes"></div>
+      <a class="view-all" style="margin-top:10px" href="match-centre.html">All fixtures <i class="ti ti-arrow-right"></i></a>
+    </div>
+
+    <div class="spot" id="spotlight"></div>
+
+    <div class="panel notices">
+      <div class="panel-hd"><h3><i class="ti ti-bell"></i> Club Notices</h3></div>
+      <div id="notices"></div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-hd"><h3>Quick Links</h3></div>
+      <a class="btn btn-accent" style="width:100%;justify-content:center;margin-bottom:8px" href="registration.html"><i class="ti ti-user-plus"></i> Register to play</a>
+      <a class="btn btn-outline" style="width:100%;justify-content:center;margin-bottom:8px" href="communications.html"><i class="ti ti-broadcast"></i> Communications</a>
+      <a class="btn btn-outline" style="width:100%;justify-content:center" href="cricket-blast.html"><i class="ti ti-mood-smile"></i> Cricket Blast</a>
+    </div>
+
+  </aside>
+
+</div></div></section>
+
+<section class="sec sec-dark"><div class="wrap">
+  <div class="sec-hdr"><div><div class="eyebrow">Our cricket</div><h2 class="s-hed">Teams &amp; Programs</h2></div>
+    <a class="view-all" href="seniors.html">All teams <i class="ti ti-arrow-right"></i></a></div>
+  <div class="grid g4" id="gcPillars"></div>
+</div></section>
+
+<section class="sec blast-band"><div class="wrap"><div class="glass blast-inner">
+  <img class="blast-logo" src="assets/logos/woolworths-blast.png" alt="Woolworths Cricket Blast">
+  <div><div class="eyebrow">Ages 5&ndash;8 &middot; All Girls Blasters</div>
+    <h2 class="s-hed">Woolworths Cricket Blast</h2>
+    <p>An exciting introduction to cricket for our youngest players &mdash; a great way to learn the basics while having fun in a supportive, team-focused setting.</p></div>
+  <a class="btn btn-blast btn-lg" href="cricket-blast.html">Find out more <i class="ti ti-arrow-right"></i></a>
+</div></div></section>
+
+<section class="sec"><div class="wrap">
+  <div class="sec-hdr"><div><div class="eyebrow">Thank you</div><h2 class="s-hed">Our Partners</h2></div>
+    <a class="view-all" href="sponsors.html">All sponsors <i class="ti ti-arrow-right"></i></a></div>
+  <div class="pcards" id="partnerCards"></div>
+  <div class="sp-rail" style="margin-top:18px" id="gcSponsorRail"></div>
+</div></section>
+
+<section class="sec sec-alt"><div class="wrap">
+  <div class="split">
+    <div><div class="eyebrow">About the club</div><h2 class="s-hed" id="gcAboutHed"></h2><div id="gcAboutBody"></div>
+      <a class="btn btn-outline" style="margin-top:16px" href="about.html">More about us <i class="ti ti-arrow-right"></i></a></div>
+    <aside class="side" id="gcFacts"></aside>
+  </div>
+</div></section>
+
+<nav id="botBar"></nav>
 """)
 
 def build():
