@@ -1,109 +1,81 @@
 <!DOCTYPE html>
+<!-- Geelong City CC — built on the RDCA / SportsWeb One template -->
 <html lang="en-AU">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Geelong City CC — Design Directions</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="theme-color" content="#102b5e">
+<meta name="description" content="Geelong City Cricket Club — Home of the Sharks. Founded 1928, proud members of the Geelong Cricket Association.">
+<title>Home — Geelong City Cricket Club</title>
 <link rel="icon" href="assets/logos/sharks-shield.png">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.47.0/tabler-icons.min.css">
-<style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--navy:#102b5e;--navy-d:#0b1e42;--navy-l:#2a4f96;--grey:#dfdddd;--border:#e2e0e0;--muted:#6b7280}
-body{font-family:'DM Sans',system-ui,sans-serif;background:#f4f4f5;color:#12182b;line-height:1.6}
-a{text-decoration:none;color:inherit}
-.wrap{width:min(1120px,92vw);margin:0 auto}
-header{background:linear-gradient(160deg,var(--navy),var(--navy-d));color:#fff;padding:44px 0 48px;position:relative;overflow:hidden}
-header::after{content:'';position:absolute;right:-70px;top:-70px;width:340px;height:340px;background:radial-gradient(circle,rgba(74,114,192,.35),transparent 65%)}
-.hwrap{position:relative;z-index:1;display:flex;gap:20px;align-items:center;flex-wrap:wrap}
-.hwrap img{width:92px}
-.eyebrow{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#4a72c0;font-weight:700}
-h1{font-family:'Bebas Neue';font-size:clamp(36px,7vw,58px);letter-spacing:.8px;line-height:1}
-header p{color:rgba(255,255,255,.78);max-width:70ch;margin-top:10px}
-.pal{display:flex;gap:10px;margin-top:18px;flex-wrap:wrap;position:relative;z-index:1}
-.sw{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-radius:30px;padding:6px 14px 6px 6px;font-size:12px;color:rgba(255,255,255,.85)}
-.dot{width:22px;height:22px;border-radius:50%;border:1px solid rgba(255,255,255,.3)}
-.note{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);border-radius:10px;padding:12px 14px;margin-top:18px;color:rgba(255,255,255,.85);font-size:13.5px;max-width:78ch;position:relative;z-index:1}
-main{padding:34px 0 56px}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-@media(max-width:860px){.grid{grid-template-columns:1fr}}
-.card{background:#fff;border:1px solid var(--border);border-radius:14px;overflow:hidden;display:flex;flex-direction:column;transition:transform .16s,box-shadow .16s}
-.card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(16,43,94,.16)}
-.thumb{height:130px;position:relative;display:flex;align-items:flex-end;padding:14px;color:#fff}
-.thumb .n{position:absolute;top:8px;right:14px;font-family:'Bebas Neue';font-size:50px;opacity:.22}
-.thumb h2{font-family:'Bebas Neue';font-size:27px;letter-spacing:.5px;position:relative;z-index:1}
-.t-a{background:linear-gradient(150deg,#102b5e,#0b1e42)}
-.t-b{background:linear-gradient(150deg,#16346e,#0b1e42);border-bottom:4px solid #2a4f96}
-.t-c{background:#102b5e}
-.t-c h2{font-family:Georgia,serif;font-weight:700;font-size:24px}
-.cbody{padding:16px;flex:1;display:flex;flex-direction:column}
-.cbody p{color:var(--muted);font-size:13.5px;flex:1;margin-bottom:12px}
-.open{display:block;text-align:center;background:var(--navy);color:#fff;font-weight:700;padding:11px;border-radius:8px;font-size:13.5px}
-.open:hover{background:var(--navy-l)}
-.pages{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:12px}
-.pages span{font-size:10.5px;background:var(--grey);color:var(--navy);padding:3px 8px;border-radius:20px;font-weight:600}
-.info{margin-top:26px;background:#fff;border:1px solid var(--border);border-radius:14px;padding:20px}
-.info h3{font-family:'Bebas Neue';font-size:22px;color:var(--navy);letter-spacing:.5px;margin-bottom:8px}
-.info p{color:var(--muted);font-size:14px;margin-bottom:8px}
-.info code{background:#f0f0f1;padding:2px 6px;border-radius:4px;font-size:12.5px}
-</style>
+<meta property="og:title" content="Home — Geelong City Cricket Club">
+<meta property="og:description" content="Geelong City Cricket Club — Home of the Sharks. Founded 1928, proud members of the Geelong Cricket Association.">
+<meta property="og:image" content="assets/logos/sharks-shield.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+<link rel="stylesheet" href="assets/gc-shared.css">
+<link rel="stylesheet" href="assets/gc-theme.css">
 </head>
-<body>
-<header><div class="wrap">
-  <div class="hwrap">
-    <img src="assets/logos/sharks-shield.png" alt="Geelong City Sharks crest">
+<body class="accent-teal" data-page="index">
+<div id="gcTopbar"></div>
+<div id="gcMob"></div>
+<nav id="gcNav"></nav>
+<div id="gcTicker"></div>
+<header class="hero" id="gcHero"></header>
+
+<section class="strip"><div class="wrap"><div class="strip-grid">
+  <div class="scard" id="gcNext"></div>
+  <div class="scard" id="gcLast"></div>
+  <div class="scard" id="gcMiniLadder"></div>
+</div></div></section>
+
+<section class="sec sec-dark"><div class="wrap">
+  <div class="sec-hdr"><div><div class="eyebrow">Our cricket</div><h2 class="s-hed">Teams &amp; Programs</h2></div>
+    <a class="view-all" href="registration.html">Register <i class="ti ti-arrow-right"></i></a></div>
+  <div class="grid g4" id="gcPillars"></div>
+</div></section>
+
+<section class="sec sec-alt"><div class="wrap">
+  <div class="split">
     <div>
-      <div class="eyebrow">Geelong City Cricket Club · Est. 1928</div>
-      <h1>Three Design Directions</h1>
+      <div class="eyebrow">About the club</div>
+      <h2 class="s-hed" id="gcAboutHed"></h2>
+      <div id="gcAboutBody"></div>
+      <a class="btn btn-outline" style="margin-top:16px" href="about.html">More about us <i class="ti ti-arrow-right"></i></a>
     </div>
+    <aside class="side" id="gcFacts"></aside>
   </div>
-  <p>Three complete, multi-page websites for the Sharks — each in the club's own colours, each referencing the RDCA and BHRDCA association builds, and each with a full <strong>Communications</strong> page. Content carried across from geelongcitycc.com.au.</p>
-  <div class="pal">
-    <span class="sw"><span class="dot" style="background:#102b5e"></span> #102b5e Navy</span>
-    <span class="sw"><span class="dot" style="background:#fff"></span> #ffffff White</span>
-    <span class="sw"><span class="dot" style="background:#dfdddd"></span> #dfdddd Grey</span>
-  </div>
-  <div class="note"><b>Two notes:</b> the grey you gave was <code>#dfddd</code> (5 chars — not valid hex); I've read it as <b>#dfdddd</b> — say the word and I'll swap it globally. And since the palette has no accent colour, links/hovers/active states use a <b>lighter tint of the same navy</b> rather than introducing a foreign hue.</div>
-</div></header>
+</div></section>
 
-<main><div class="wrap">
-  <div class="grid">
+<section class="sec"><div class="wrap">
+  <div class="eyebrow">By the numbers</div><h2 class="s-hed">The club today</h2>
+  <div class="statgrid" id="gcStats"></div>
+</div></section>
 
-    <a class="card" href="design-a/index.html">
-      <div class="thumb t-a"><span class="n">A</span><h2>Association</h2></div>
-      <div class="cbody">
-        <p>Closest to the RDCA build — dark navy chrome, sticky nav with an active pill, eyebrow rules, dense card grid and a floating match strip. The safe, association-grade choice.</p>
-        <div class="pages"><span>Bebas Neue</span><span>DM Sans</span><span>Match strip</span></div>
-        <span class="open">Open Design A</span>
-      </div>
-    </a>
+<section class="sec blast-band"><div class="wrap"><div class="glass blast-inner">
+  <img class="blast-logo" src="assets/logos/woolworths-blast.png" alt="Woolworths Cricket Blast">
+  <div><div class="eyebrow">Ages 5&ndash;8 &middot; All Girls Blasters</div>
+    <h2 class="s-hed">Woolworths Cricket Blast</h2>
+    <p>An exciting introduction to cricket for our youngest players &mdash; a great way to learn the basics while having fun in a supportive, team-focused setting.</p></div>
+  <a class="btn btn-blast btn-lg" href="cricket-blast.html">Find out more <i class="ti ti-arrow-right"></i></a>
+</div></div></section>
 
-    <a class="card" href="design-b/index.html">
-      <div class="thumb t-b"><span class="n">B</span><h2>Match Day</h2></div>
-      <div class="cbody">
-        <p>Photo-led hero like the club's current site, a full-width dark scoreboard strip, heavy grey slab panels and condensed uppercase headings. The boldest, most match-focused option.</p>
-        <div class="pages"><span>Anton</span><span>Inter</span><span>Scoreboard</span></div>
-        <span class="open">Open Design B</span>
-      </div>
-    </a>
+<section class="sec"><div class="wrap">
+  <div class="sec-hdr"><div><div class="eyebrow">Latest</div><h2 class="s-hed">Club News</h2></div>
+    <a class="view-all" href="news.html">All news <i class="ti ti-arrow-right"></i></a></div>
+  <div class="grid g3" id="gcNewsHome"></div>
+</div></section>
 
-    <a class="card" href="design-c/index.html">
-      <div class="thumb t-c"><span class="n">C</span><h2>Heritage</h2></div>
-      <div class="cbody">
-        <p>Crest-forward and classic — the traditional <em>Facile Princeps</em> crest leads the hero, with Playfair serif headings, restrained rules and navy on warm grey. Leans into 1928.</p>
-        <div class="pages"><span>Playfair</span><span>Source Sans</span><span>Crest-led</span></div>
-        <span class="open">Open Design C</span>
-      </div>
-    </a>
-
-  </div>
-
-  <div class="info">
-    <h3>How these are built</h3>
-    <p>All three share <strong>one content file</strong> (<code>assets/gc-data.js</code>) and <strong>one site script</strong> (<code>assets/gc-site.js</code>) that injects the nav, footer and every data-driven section. The only thing that differs between designs is <code>theme.css</code> — which is exactly the skin model: same content, same markup, different look.</p>
-    <p><strong>Ten pages each:</strong> Home · About Us · Teams · Cricket Blast · Match Centre · Registration · Communications · News · Sponsors · Contact.</p>
-    <p><strong>Sample data:</strong> ladder, fixtures, results and news are placeholders (clearly flagged in the UI) and swap to live SportsWeb One / PlayHQ feeds with no page changes. Everything else — teams, contacts, sponsors, registration links, Cricket Blast — is real, carried across from the club's site.</p>
-  </div>
-</div></main>
+<section class="sec sec-alt"><div class="wrap">
+  <div class="sec-hdr"><div><div class="eyebrow">Thank you</div><h2 class="s-hed">Our Sponsors</h2></div>
+    <a class="view-all" href="sponsors.html">All sponsors <i class="ti ti-arrow-right"></i></a></div>
+  <div class="sp-rail" id="gcSponsorRail"></div>
+</div></section>
+<footer id="gcFooter"></footer>
+<script src="assets/gc-data.js"></script>
+<script src="assets/gc-site.js"></script>
+<script src="assets/gc-switch.js"></script><!-- REVIEW ONLY: delete before go-live -->
 </body>
 </html>
